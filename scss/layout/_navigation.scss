@@ -1,0 +1,47 @@
+nav {
+    display: flex;
+    font: {
+        size: 16px;
+        weight: 500;
+    }
+    & > * {
+        display: flex;
+        align-items: center;
+        color: $darkGrey;
+        margin: 0 25px;
+    }
+    i {
+        font-size: 20px;
+        margin-right: 10px;
+    }
+    bouton.menu {
+        @include transition;
+        cursor: pointer;
+        padding: 10px;
+        border: solid 2px transparent;
+        border-radius: 5px;
+        &:hover {
+            border-color: $darkGrey;
+        }
+    }
+
+    a {
+        position: relative;
+        text-decoration: none;
+
+        &:after {
+            @include transition;
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            content: "";
+            width: 0;
+            height: 2px;
+            background-color: $darkGrey;
+        }
+
+        &:hover:after {
+            width: 100%;
+        }
+    }
+}
