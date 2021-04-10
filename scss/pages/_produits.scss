@@ -1,3 +1,73 @@
-h1 {
-    font-size: 30px;
+.produit {
+    @include transition;
+    display: flex;
+    height: 370px;
+    margin: 15px;
+    flex: 1;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    color: $darkGrey;
+
+    picture {
+        img {
+            width: auto;
+            height: 330px;
+        }
+    }
+    
+
+    div.side {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        padding: 10px 100px 10px 50px;
+    }
+
+
+
+
+    button {
+        cursor: pointer;
+        width: 230px;
+
+        p {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+            width: 100%;
+            color: #fff;
+            padding: 15px;
+
+            font: {
+                size: 14px;
+                weight: 700;
+            }
+
+            &:before {
+                @include transition;
+                opacity: 0;
+                content: "\f218";
+                position: absolute;
+                color: #fff;
+                transform: translateX(50px);
+
+                font: {
+                    family: "Font Awesome 5 Free";
+                    size: 16px;
+                    weight: 700;
+                }
+            }
+
+            &:hover:before {
+                transform: translateX(65px);
+                opacity: 1;
+            }
+        }
+
+
+    }
 }

@@ -1,0 +1,18 @@
+button.buttonLink {
+    display: flex;
+    align-items: center;
+    background-color: $blue;
+    border-radius: 10px;
+}
+
+p.price {
+    background-color: $darkPurple;
+    border-radius: 5px;
+    padding: 5px 15px;
+    color: #fff;
+
+    font: {
+        size: 14px;
+        weight: 700;
+    }
+}

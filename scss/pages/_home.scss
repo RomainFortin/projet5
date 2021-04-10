@@ -1,137 +1,91 @@
-main {
-    padding: $mainPadding;
+.wrapper {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
 
-    .container {
-        padding: 15px;
-        margin: 50px 0;
+    .article {
+        @include transition;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        height: 370px;
+        margin: 15px;
+        flex: 1;
+        background-color: #fff;
+        padding: 20px;
         border-radius: 10px;
-        background-color: $lightGrey;
+        color: $darkGrey;
 
-        h2 {
-            margin: 15px;
-            color: $darkGrey;
+        img {
+            width: auto;
+            height: 160px;
+            object-fit: cover;
+        }
 
-            font: {
-                size: 22px;
-                weight: 700;
+        div.title {
+            display: flex;
+            justify-content: space-between;
+
+        }
+
+        div.legende {
+            p {
+                font-size: 14px;
+                font-weight: 500;
+
+                &:nth-child(1) {
+                    font-weight: 700;
+                }
+
             }
         }
 
-        .wrapper {
-            display: flex;
-            justify-content: space-between;
-            flex-wrap: wrap;
 
-            .article {
-                @include transition;
+
+        button.buttonLink {
+
+            a {
+                position: relative;
                 display: flex;
-                flex-direction: column;
-                justify-content: space-between;
-                height: 370px;
-                margin: 15px;
-                flex: 1;
-                flex-direction: column;
-                background-color: #fff;
-                padding: 20px;
-                border-radius: 10px;
-                color: $darkGrey;
+                justify-content: center;
+                align-items: center;
+                text-decoration: none;
+                width: 100%;
+                color: #fff;
+                padding: 15px;
 
-                img {
-                    width: auto;
-                    height: 160px;
-                    object-fit: cover;
+                font: {
+                    size: 14px;
+                    weight: 700;
                 }
 
-                div.title {
-                    display: flex;
-                    justify-content: space-between;
+                &:before {
+                    @include transition;
+                    opacity: 0;
+                    content: "\f35a";
+                    position: absolute;
+                    color: #fff;
+                    transform: translateX(30px);
 
-                    h3 {
-                        font: {
-                            size: 16px;
-                            weight: 700;
-                        }
-                    }
-
-                    p {
-                        background-color: $darkPurple;
-                        border-radius: 5px;
-                        padding: 5px 15px;
-                        color: #fff;
-
-                        font: {
-                            size: 14px;
-                            weight: 700;
-                        }
+                    font: {
+                        family: "Font Awesome 5 Free";
+                        size: 16px;
+                        weight: 700;
                     }
                 }
 
-                div.legende {
-                    p {
-                        font-size: 14px;
-
-                        &:nth-child(1) {
-                            font-weight: 700;
-                        }
-
-                        &:nth-child(2) {
-                            font-weight: 500;
-                        }
-                    }
-                }
-
-
-
-                bouton {
-                    display: flex;
-                    align-items: center;
-                    background-color: $blue;
-                    border-radius: 10px;
-
-                    a {
-                        position: relative;
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        text-decoration: none;
-                        width: 100%;
-                        color: #fff;
-                        padding: 15px;
-
-                        font: {
-                            size: 14px;
-                            weight: 700;
-                        }
-
-                        &:before {
-                            @include transition;
-                            opacity: 0;
-                            content: "\f218";
-                            position: absolute;
-                            color: #fff;
-                            transform: translateX(-50px);
-
-                            font: {
-                                family: "Font Awesome 5 Free";
-                                size: 16px;
-                                weight: 700;
-                            }
-                        }
-
-                        &:hover:before {
-                            transform: translateX(-70px);
-                            opacity: 1;
-                        }
-                    }
-
-
-                }
-
-                &:hover {
-                    box-shadow: 0 0 8px 3px #d1d1d1;
-                    transform: scale(1.02);
+                &:hover:before {
+                    transform: translateX(45px);
+                    opacity: 1;
                 }
             }
+
+
+        }
+
+        &:hover {
+            box-shadow: 0 0 8px 3px #d1d1d1;
+            transform: scale(1.01);
         }
     }
 }

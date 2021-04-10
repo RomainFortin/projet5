@@ -18,74 +18,98 @@ const fetchFurnitures = async () => {
 
 const showTeddies = async () => {
     await fetchTeddies()
-    teddiesDiv.innerHTML += (
-        teddies.map(teddy => (
+
+    for (var i = 0; i < teddies.length; i++) {
+        var color = teddies[i].colors;
+
+        function colors(colors) {
+            return colors.map(color => `<p>${color}</p>`).join("");
+        }
+
+        teddiesDiv.innerHTML += (
             `
                 <div class='article'>
-                    <img src='${teddy.imageUrl}' alt=''>
+                    <img src='${teddies[i].imageUrl}' alt=''>
                     <div class='title'>
-                        <h3 class='name'>${teddy.name}</h3>
-                        <p class='price'>${teddy.price} €</p>
+                        <h3 class='name'>${teddies[i].name}</h3>
+                        <p class='price'>${teddies[i].price} €</p>
                     </div>
                     <div class='legende'>
                         <p>Couleurs:</p>
-                        <p>${teddy.colors}</p>   
+                        ${color ? colors(color):""} 
                     </div>
-                    <bouton>
-                        <a class="idLink" href='/teddies/${teddy._id}' target='_blank'>Commander</a>
-                    </bouton>
+                    <button class="buttonLink">
+                        <a class="idLink" href='/teddies/${teddies[i]._id}' target='_blank'>Détails
+                    </button>
                 </div>
             `
-        )).join('')
-    )
+        )
+    }
 }
+
+
 const showCameras = async () => {
     await fetchCameras()
-    camerasDiv.innerHTML += (
-        cameras.map(camera => (
+
+    for (var i = 0; i < cameras.length; i++) {
+        var lens = cameras[i].lenses;
+
+        function lenses(lenses) {
+            return lenses.map(lens => `<p>${lens}</p>`).join("");
+        }
+        camerasDiv.innerHTML += (
+
             `
-            <div class='article'>
-                    <img src='${camera.imageUrl}' alt=''>
+                <div class='article'>
+                    <img src='${cameras[i].imageUrl}' alt=''>
                     <div class='title'>
-                        <h3 class='name'>${camera.name}</h3>
-                        <p class='price'>${camera.price} €</p>
+                        <h3 class='name'>${cameras[i].name}</h3>
+                        <p class='price'>${cameras[i].price} €</p>
                     </div>
                     <div class='legende'>
                         <p>Couleurs:</p>
-                        <p>${camera.lenses}</p>   
+                        ${lenses ? lenses(lens):""}   
                     </div>
-                    <bouton>
-                        <a class="idLink" href='/cameras/${camera._id}' target='_blank'>Commander</a>
-                    </bouton>
+                    <button class="buttonLink">
+                        <a class="idLink" href='/cameras/${cameras[i]._id}' target='_blank'>Détails</a>
+                    </button>
                 </div>
             `
-        )).join('')
-    )
+        )
+    }
 }
 const showFurnitures = async () => {
     await fetchFurnitures()
-    furnituresDiv.innerHTML += (
-        furnitures.map(furniture => (
+
+    for (var i = 0; i < furnitures.length; i++) {
+        var varnish = furnitures[i].varnish;
+
+        function varnishes(varnishes) {
+            return varnishes.map(varnish => `<p>${varnish}</p>`).join("");
+        }
+        furnituresDiv.innerHTML += (
             `
-            <div class='article'>
-                    <img src='${furniture.imageUrl}' alt=''>
+                <div class='article'>
+                    <img src='${furnitures[i].imageUrl}' alt=''>
                     <div class='title'>
-                        <h3 class='name'>${furniture.name}</h3>
-                        <p class='price'>${furniture.price}€</p>
+                        <h3 class='name'>${furnitures[i].name}</h3>
+                        <p class='price'>${furnitures[i].price}€</p>
                     </div>
                     <div class='legende'>
                         <p>Couleurs:</p>
-                        <p>${furniture.varnish}</p>   
+                        ${varnishes ? varnishes(varnish):""}    
                     </div>
-                    <bouton>
-                        <a class="idLink" href='/furniture/${furniture._id}' target='_blank'>Commander</a>
-                    </bouton>
+                    <button class="buttonLink">
+                        <a class="idLink" href='/furniture/${furnitures[i]._id}' target='_blank'>Détails</a>
+                    </button>
                 </div>
             `
-        )).join('')
-    )
+        )
+    }
 }
 
 showTeddies()
 showCameras()
 showFurnitures()
+
+

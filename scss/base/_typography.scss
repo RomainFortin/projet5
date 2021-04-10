@@ -1,7 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;200;300;400;500;600;700&display=swap');
 
-a, p, h1, h2, h3, h4, h5, h6, bouton, span {
+a, p, h1, h2, h3, h4, h5, h6, button, span, label, select {
     font: {
         family:'Montserrat', sans-serif;
     }
 }  
+
+h2 {
+    margin: 15px;
+    color: $darkGrey;
+
+    font: {
+        size: 22px;
+        weight: 700;
+    }
+}
+
+h3 {
+    color: $darkGrey;
+
+    font: {
+        size: 16px;
+        weight: 700;
+    }
+}
