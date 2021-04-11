@@ -1,6 +1,6 @@
 .produit {
     @include transition;
-    display: flex;
+    @include displayFlex(false, false, false);
     height: 370px;
     margin: 15px;
     flex: 1;
@@ -15,13 +15,10 @@
             height: 330px;
         }
     }
-    
+
 
     div.side {
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        align-items: flex-start;
+        @include displayFlex(column, space-between, flex-start);
         padding: 10px 100px 10px 50px;
     }
 
@@ -33,10 +30,8 @@
         width: 230px;
 
         p {
+            @include displayFlex(row, center, center);
             position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             text-decoration: none;
             width: 100%;
             color: #fff;

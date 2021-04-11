@@ -1,3 +1,21 @@
+@mixin displayFlex($direction:false, $justify:false, $align:false){
+    display: flex;
+    @if $direction {
+        flex-direction: $direction;
+    }
+    @if $justify {
+        justify-content: $justify;
+    }
+    @if $align {
+        align-items: $align;
+    }
+}
+
 @mixin transition {
     transition: 0.3s;
 } 
+
+@mixin boxShadow {
+    box-shadow: 0 0 8px 3px #d1d1d1;
+}
+

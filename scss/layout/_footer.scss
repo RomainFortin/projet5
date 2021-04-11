@@ -1,19 +1,15 @@
 footer {
+    @include displayFlex(column, false, center);
     padding: $mainPadding;
-    display: flex;
-    flex-direction: column;
-     align-items: center;
      box-shadow: 0 0 8px 3px #d1d1d1;
     background-color: $lightPurple;
     .wrapper {
+        @include displayFlex(row, space-between, false);
         padding: $mainPadding;
         margin: 60px 0;
-        display: flex;
-        justify-content: space-between;
         width: 100%;
         div {
-            display: flex;
-            flex-direction: column;
+            @include displayFlex(column, false, false);
             &>* {
                 color: $darkGrey;
             }
@@ -36,9 +32,9 @@ footer {
         }
     }
     .social {
-        display: flex;
+        @include displayFlex(false, false, false);
         a {
-            display: flex;
+            @include displayFlex(false, false, false);
             margin: 30px;
             text-decoration: none;
             i {

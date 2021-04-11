@@ -1,16 +1,17 @@
-$lightPurple: #f3e9f1;
-$darkPurple: #9e7682;
-$darkGrey: #2a2b2e;
-$lightGrey: #f4f4f4;
-$blue: #62929e;
-
-
 main {
     padding: $mainPadding;
+
     .container {
+        position: relative;
         padding: 15px;
         margin: 50px 0;
         border-radius: 10px;
         background-color: $lightGrey;
+
+        .containerHeader {
+            @include displayFlex(row, space-between, center);
+            width: 100%;
+            padding: 15px;
+        }
     }
 }

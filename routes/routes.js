@@ -13,13 +13,28 @@ router.get('/teddies/:id', function (req, res) {
     root: './'
   });
 });
+router.get('/teddies', function (req, res) {
+  res.sendFile('/pages/produits.html', {
+    root: './'
+  });
+});
 router.get('/cameras/:id', function (req, res) {
   res.sendFile('/pages/produit.html', {
     root: './'
   });
 });
+router.get('/cameras', function (req, res) {
+  res.sendFile('/pages/produits.html', {
+    root: './'
+  });
+});
 router.get('/furniture/:id', function (req, res) {
   res.sendFile('/pages/produit.html', {
+    root: './'
+  });
+});
+router.get('/furniture', function (req, res) {
+  res.sendFile('/pages/produits.html', {
     root: './'
   });
 });

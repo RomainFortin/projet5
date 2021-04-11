@@ -1,14 +1,21 @@
+.containerHeader a{
+        text-decoration: none;
+        color: $blue;
+
+        font: {
+            size: 14px;
+            weight: 500;
+        }
+}
+
 .wrapper {
-    display: flex;
-    justify-content: space-between;
+    @include displayFlex(row, space-between);
     flex-wrap: wrap;
 
     .article {
         @include transition;
-        display: flex;
+        @include displayFlex(row, space-between);
         flex-direction: column;
-        justify-content: space-between;
-        height: 370px;
         margin: 15px;
         flex: 1;
         background-color: #fff;
@@ -23,12 +30,15 @@
         }
 
         div.title {
-            display: flex;
-            justify-content: space-between;
-
+            @include displayFlex(row, space-between, flex-start);
+            margin-top: 10px;
+            height: 40px;
         }
 
         div.legende {
+            margin-top: 10px;
+            flex: 1;
+
             p {
                 font-size: 14px;
                 font-weight: 500;
@@ -43,12 +53,11 @@
 
 
         button.buttonLink {
+            margin-top: 20px;
 
             a {
+                @include displayFlex(row, center, center);
                 position: relative;
-                display: flex;
-                justify-content: center;
-                align-items: center;
                 text-decoration: none;
                 width: 100%;
                 color: #fff;

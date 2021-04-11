@@ -22,7 +22,7 @@ const showProduit = async () => {
         var choice = produit.lenses
         var legende = "Objectifs:"
         var option = "Choisissez un objectif"
-    } else {
+    } else if (window.location.href.includes('furniture')) {
         var choice = produit.varnish
         var legende = "Vernis:"
         var option = "Choisissez un vernis"
@@ -34,7 +34,9 @@ const showProduit = async () => {
     section.innerHTML = (
         `
         <div class='container'>
-        <h2 class='name'>${produit.name}</h2>
+        <div class="containerHeader">
+            <h2 class='name'>${produit.name}</h2>
+        </div>
             <div class='produit'>
                 <picture>
                     <img src='${produit.imageUrl}' alt=''>
