@@ -1,7 +1,50 @@
-button.buttonLink {
-    @include displayFlex(row, false , center);
+button {
+    @include displayFlex(row, center , center);
     background-color: $blue;
     border-radius: 10px;
+    color: #fff;
+    font: {
+        size: 14px;
+        weight: 700;
+    }
+}
+
+button.menu {
+    color: $darkGrey;
+}
+
+button.buttonLink {
+    cursor: pointer;
+    width: 230px;
+    height: 45px;
+
+        &:after {
+            @include transition;
+            opacity: 0;
+            content: "\f218";
+            position: absolute;
+            color: #fff;
+            transform: translateX(50px);
+
+            font: {
+                family: "Font Awesome 5 Free";
+                size: 16px;
+                weight: 700;
+            }
+        }
+
+        &:hover:after {
+            transform: translateX(65px);
+            opacity: 1;
+        }
+
+        &[disabled]{
+            cursor: default;
+            background-color: $lightBlue;
+            &:after {
+                display: none;
+            }
+        }
 }
 
 p.price {

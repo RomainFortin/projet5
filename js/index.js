@@ -32,14 +32,14 @@ const showTeddies = async () => {
                     <img src='${teddies[i].imageUrl}' alt=''>
                     <div class='title'>
                         <h3 class='name'>${teddies[i].name}</h3>
-                        <p class='price'>${teddies[i].price} €</p>
+                        <p class='price'>${teddies[i].price/100} €</p>
                     </div>
                     <div class='legende'>
                         <p>Couleurs:</p>
                         ${color ? colors(color):""} 
                     </div>
-                    <button class="buttonLink">
-                        <a class="idLink" href='/teddies/${teddies[i]._id}' target='_blank'>Détails
+                    <button>
+                        <a class="idLink" href='/teddies/${teddies[i]._id}'>Détails
                     </button>
                 </div>
             `
@@ -64,14 +64,14 @@ const showCameras = async () => {
                     <img src='${cameras[i].imageUrl}' alt=''>
                     <div class='title'>
                         <h3 class='name'>${cameras[i].name}</h3>
-                        <p class='price'>${cameras[i].price} €</p>
+                        <p class='price'>${cameras[i].price/100} €</p>
                     </div>
                     <div class='legende'>
                         <p>Couleurs:</p>
                         ${lenses ? lenses(lens):""}   
                     </div>
-                    <button class="buttonLink">
-                        <a class="idLink" href='/cameras/${cameras[i]._id}' target='_blank'>Détails</a>
+                    <button>
+                        <a class="idLink" href='/cameras/${cameras[i]._id}'>Détails</a>
                     </button>
                 </div>
             `
@@ -93,14 +93,14 @@ const showFurnitures = async () => {
                     <img src='${furnitures[i].imageUrl}' alt=''>
                     <div class='title'>
                         <h3 class='name'>${furnitures[i].name}</h3>
-                        <p class='price'>${furnitures[i].price}€</p>
+                        <p class='price'>${furnitures[i].price/100}€</p>
                     </div>
                     <div class='legende'>
                         <p>Couleurs:</p>
                         ${varnishes ? varnishes(varnish):""}    
                     </div>
-                    <button class="buttonLink">
-                        <a class="idLink" href='/furniture/${furnitures[i]._id}' target='_blank'>Détails</a>
+                    <button>
+                        <a class="idLink" href='/furniture/${furnitures[i]._id}'>Détails</a>
                     </button>
                 </div>
             `

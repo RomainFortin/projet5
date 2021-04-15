@@ -40,3 +40,15 @@ ul {
             width: 100%;
         }
 }
+label{
+    @include displayFlex(row, false, center);
+    position: relative;
+    padding-right: 15px;
+}
+select {
+    border-color:$darkGrey;
+    margin-left: 15px;
+    border-radius: 5px;
+    padding: 5px;
+    // appearance:none;
+}

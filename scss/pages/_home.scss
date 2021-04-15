@@ -52,8 +52,9 @@
 
 
 
-        button.buttonLink {
+        button {
             margin-top: 20px;
+            width: 100%;
 
             a {
                 @include displayFlex(row, center, center);
@@ -68,7 +69,7 @@
                     weight: 700;
                 }
 
-                &:before {
+                &:after {
                     @include transition;
                     opacity: 0;
                     content: "\f35a";
@@ -83,7 +84,7 @@
                     }
                 }
 
-                &:hover:before {
+                &:hover:after {
                     transform: translateX(45px);
                     opacity: 1;
                 }

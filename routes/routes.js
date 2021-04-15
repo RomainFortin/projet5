@@ -38,6 +38,11 @@ router.get('/furniture', function (req, res) {
     root: './'
   });
 });
+router.get('/compte', function (req, res) {
+  res.sendFile('/pages/compte.html', {
+    root: './'
+  });
+});
 router.get('/panier', function (req, res) {
   res.sendFile('/pages/panier.html', {
     root: './'

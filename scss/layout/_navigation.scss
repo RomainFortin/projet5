@@ -1,14 +1,17 @@
 nav {
     @include displayFlex(false, false, false);
-    & > * {
+
+    &>* {
         @include displayFlex(row, false, center);
         color: $darkGrey;
         margin: 0 25px;
     }
+
     i {
         font-size: 20px;
         margin-right: 10px;
     }
+
     button.menu {
         position: relative;
         @include transition;
@@ -17,6 +20,7 @@ nav {
         border: solid 2px transparent;
         background-color: transparent;
         border-radius: 5px;
+
         font: {
             size: 16px;
             weight: 600;
@@ -50,5 +54,31 @@ nav {
         &:hover:after {
             width: 100%;
         }
+    }
+
+    .panier {
+        position: relative;
+
+        .total {
+            @include transition;
+            @include displayFlex(false, center, center);
+            position: absolute;
+            top: 0;
+            left: -10px;
+            width: 20px;
+            height: 20px;
+            background-color: red;
+            transform: scale(0);
+            border-radius: 50%;
+            color: #fff;
+            font: {
+                size: 12px;
+                weight: 700;
+            }
+            &.isFilled {
+                transform: scale(1);
+            }
+        }
+        
     }
 }
