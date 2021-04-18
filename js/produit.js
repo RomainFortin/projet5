@@ -5,7 +5,6 @@ const url = window.location.href.split('http://localhost:3000/', 2);
 const produitUrl = "http://localhost:3000/api/" + url[1] + "";
 
 const section = document.querySelector('main');
-const title = document.querySelector('h1');
 
 const fetchProduit = async () => {
     produit = await fetch(produitUrl).then(res => res.json());
@@ -45,26 +44,26 @@ const showProduit = async () => {
                 <div class="side">
                     <p><strong>Description:</strong></p>
                     <p class='description'>${produit.description}</p>
-                        <label for="choice">${legende}
-                            <select name="choice" class="choice" required>
-                                <option value="" disabled selected value>${option}</option>
-                                ${choice ? choices(choice):""}
-                            </select>
-                        </label>
-                        <label for="choice">Quantité:
-                            <select name="choice" class="choice" required> 
-                                <option value="" disabled selected value>Choississez une quantité</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                        </label>
-                        <p class='price'>${produit.price/100} €</p>
-                        <button disabled class="buttonLink">
-                            Commander
-                        </button>
+                    <label for="choice">${legende}
+                        <select name="choice" class="choice" required>
+                            <option value="" disabled selected value>${option}</option>
+                            ${choice ? choices(choice):""}
+                        </select>
+                    </label>
+                    <label for="choice">Quantité:
+                        <select name="choice" class="choice" required> 
+                            <option value="" disabled selected value>Choississez une quantité</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </label>
+                    <p class='price'>${produit.price/100} €</p>
+                    <button disabled class="buttonLink">
+                        Commander
+                    </button>
                 </div>
             </div>
         </div>
@@ -75,63 +74,60 @@ const showProduit = async () => {
     var buttonArray = document.querySelector('button.buttonLink')
     var select = document.querySelectorAll('select');
 
-    commandeArray= []
-
-    // function checkColor(){
-
-    //     var color = select[0].value
-
-    //     if (color != produit.colors){
-    //         console.log(true)
-    //     } else {
-    //         console.log(false)
-    //     }
-    // }
-
-    for (let i = 0; i<select.length; i++){
-        select[i].addEventListener('change', function(){
-            if ((select[0].selectedIndex > 0) && (select[1].selectedIndex > 0)){
-                buttonArray.removeAttribute('disabled')
-            }
-        })
+    class commandeArray {
+        constructor(name, imageUrl, description, id, color, quantite, price) {
+            this.name = name;
+            this.imageUrl = imageUrl;
+            this.description = description;
+            this.id = id;
+            this.color = color;
+            this.quantite = parseInt(quantite);
+            this.price = price;
+        }
     }
 
-
-
-
     buttonArray.addEventListener('click', function () {
-        if (localStorage.length>0){
-            var commandeValue = JSON.parse(localStorage.getItem('commande'))[0]
+        
+        let colorValue = select[0].value;
+        let quantiteValue = select[1].value
+        let commandeTitle = produit.name + colorValue;
+
+        if (localStorage.length > 0) {
+            if (localStorage.getItem(commandeTitle)!=null){
+                let currentQuantite = JSON.parse(localStorage.getItem(commandeTitle)).quantite + parseInt(quantiteValue);
+                let commande = new commandeArray(produit.name,produit.imageUrl,produit.description,produit._id,colorValue,currentQuantite,produit.price)
+                localStorage.setItem(commandeTitle, JSON.stringify(commande))
+            } else {
+                let commande = new commandeArray(produit.name,produit.imageUrl,produit.description,produit._id,colorValue,quantiteValue,produit.price)
+                localStorage.setItem(commandeTitle, JSON.stringify(commande))
+            }
         } else {
-            var commandeValue = 0
+            let commande = new commandeArray(produit.name,produit.imageUrl,produit.description,produit._id,colorValue,quantiteValue,produit.price)
+            localStorage.setItem(commandeTitle, JSON.stringify(commande))
         }
 
-        var value = select[1].selectedIndex + commandeValue;
-        var color = select[0].value
-        
-
-        commandeArray.push(value, produit)
-
-        commandeArray[0] = value
-        produit.colors = color
-
-        localStorage.setItem('commande', JSON.stringify(commandeArray))
+        select[0].selectedIndex = 0;
+        select[1].selectedIndex = 0;
+        buttonArray.setAttribute('disabled', "")
 
         totalPanier.innerHTML = localStorage.length;
 
-        if (localStorage.length>0){
+        if (localStorage.length > 0) {
             totalPanier.classList.add('isFilled')
         } else {
             totalPanier.classList.remove('isFilled')
         }
 
-        select[0].selectedIndex = 0;
-        select[1].selectedIndex = 0;
-
-        buttonArray.setAttribute('disabled', "")
-
-
     })
+
+    for (let i = 0; i < select.length; i++) {
+        select[i].addEventListener('change', function () {
+            if ((select[0].selectedIndex > 0) && (select[1].selectedIndex > 0)) {
+                buttonArray.removeAttribute('disabled')
+            }
+        })
+    }
+
 }
 
 showProduit()

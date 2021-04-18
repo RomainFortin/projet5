@@ -1,29 +1,43 @@
-const section = document.querySelector('main div');
-var machin = JSON.parse(localStorage.getItem('commande'))
+const section = document.querySelector('main .container');
 
-console.log(machin)
+class panierTemplate{
+    constructor(name, imageUrl, color, description, quantite, price){
+        this.name = name;
+        this.imageUrl = imageUrl;
+        this.description = description;
+        this.quantite = quantite;
+        this.price = price;
 
-section.innerHTML += (
-    `
-        <div class='container'>
-        <div class="containerHeader">
-            <h2 class='name'>${machin[1].name} </h2>
-        </div>
-            <div class='produit'>
-                <picture>
-                    <img src='${machin[1].imageUrl}' alt=''>
-                </picture>
-                <div class="side">
-                    <p>quantite: ${machin[0]}</p>
-                    <p><strong>Description:</strong></p>
-                    <p class='description'>${machin[1].description}</p>
-                    <p class='description'>Couleur: ${machin[1].colors}</p>
-                    <p class='description'>Prix: ${machin[1].price/100}</p>
+        section.innerHTML += (
+            `
+                <div class='container'>
+                <div class="containerHeader">
+                    <h2 class='name'>${name} </h2>
                 </div>
-            </div>
-        </div>
-    `
-)
+                    <div class='produit'>
+                    <picture>
+                        <img src='${imageUrl}' alt=''>
+                    </picture>
+                    <div class="side">
+                    <p class='description'>Couleur: ${color}</p>
+                    <p><strong>Description:</strong></p>
+                    <p class='description'>${description}</p>
+                        <p>quantite: ${quantite}</p>
+                        <p class='description'>Prix: ${price/100*quantite}</p>
+                    </div>
+                </div>
+                
+            `
+        )
+    }
+}
+
+for (var i = 0; i < localStorage.length; i++) {
+    var machin = JSON.parse(localStorage.getItem(localStorage.key(i)))
+    new panierTemplate(machin.name, machin.imageUrl, machin.color, machin.description, machin.quantite, machin.price*machin.quantite)
+ }
+
+
 
 const clear = document.querySelector('button.clear')
 
