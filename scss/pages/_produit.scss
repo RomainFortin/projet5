@@ -16,10 +16,18 @@
         }
     }
 
-
     div.side {
         @include displayFlex(column, space-between, flex-start);
         padding: 10px 100px 10px 50px;
+        .sideHeader {
+            @include displayFlex(row, space-between, center);
+            .price {
+                margin-left: 20px;
+            }
+        }
+        .selection{
+            @include displayFlex(column, space-between, flex-start);
+        }
     }
 
 

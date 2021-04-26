@@ -33,8 +33,8 @@ class panierTemplate{
 }
 
 for (var i = 0; i < localStorage.length; i++) {
-    var machin = JSON.parse(localStorage.getItem(localStorage.key(i)))
-    new panierTemplate(machin.name, machin.imageUrl, machin.color, machin.description, machin.quantite, machin.price*machin.quantite)
+    var commande = JSON.parse(localStorage.getItem(localStorage.key(i)))
+    new panierTemplate(commande.name, commande.imageUrl, commande.color, commande.description, commande.quantite, commande.price*commande.quantite)
  }
 
 

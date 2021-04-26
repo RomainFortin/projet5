@@ -1,4 +1,8 @@
-.containerHeader a{
+.containerHeader{
+    @include displayFlex(row, space-between, center);
+    width: 100%;
+    padding: 15px;
+    a{
         text-decoration: none;
         color: $blue;
 
@@ -7,6 +11,7 @@
             weight: 500;
         }
 }
+} 
 
 .wrapper {
     @include displayFlex(row, space-between);
@@ -25,7 +30,7 @@
 
         img {
             width: auto;
-            height: 160px;
+            height: 140px;
             object-fit: cover;
         }
 

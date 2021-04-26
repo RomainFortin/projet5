@@ -34,33 +34,34 @@ const showProduit = async () => {
     section.innerHTML = (
         `
         <div class='container'>
-        <div class="containerHeader">
-            <h2 class='name'>${produit.name}</h2>
-        </div>
             <div class='produit'>
                 <picture>
                     <img src='${produit.imageUrl}' alt=''>
                 </picture>
                 <div class="side">
-                    <p><strong>Description:</strong></p>
+                    <div class="sideHeader">
+                        <h2 class='name'>${produit.name}</h2>
+                        <p class='price'>${produit.price/100} €</p>
+                    </div>
                     <p class='description'>${produit.description}</p>
-                    <label for="choice">${legende}
-                        <select name="choice" class="choice" required>
-                            <option value="" disabled selected value>${option}</option>
-                            ${choice ? choices(choice):""}
-                        </select>
-                    </label>
-                    <label for="choice">Quantité:
-                        <select name="choice" class="choice" required> 
-                            <option value="" disabled selected value>Choississez une quantité</option>
-                            <option value="1">1</option>
-                            <option value="2">2</option>
-                            <option value="3">3</option>
-                            <option value="4">4</option>
-                            <option value="5">5</option>
-                        </select>
-                    </label>
-                    <p class='price'>${produit.price/100} €</p>
+                    <div class="selection">
+                        <label for="choice">${legende}
+                            <select name="choice" class="choice" required>
+                                <option value="" disabled selected value>${option}</option>
+                                ${choice ? choices(choice):""}
+                            </select>
+                        </label>
+                        <label for="choice">Quantité:
+                            <select name="choice" class="choice" required> 
+                                <option value="" disabled selected value>Choississez une quantité</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
+                        </label>
+                    </div>
                     <button disabled class="buttonLink">
                         Commander
                     </button>
@@ -87,22 +88,22 @@ const showProduit = async () => {
     }
 
     buttonArray.addEventListener('click', function () {
-        
+
         let colorValue = select[0].value;
         let quantiteValue = select[1].value
         let commandeTitle = produit.name + colorValue;
 
         if (localStorage.length > 0) {
-            if (localStorage.getItem(commandeTitle)!=null){
+            if (localStorage.getItem(commandeTitle) != null) {
                 let currentQuantite = JSON.parse(localStorage.getItem(commandeTitle)).quantite + parseInt(quantiteValue);
-                let commande = new commandeArray(produit.name,produit.imageUrl,produit.description,produit._id,colorValue,currentQuantite,produit.price)
+                let commande = new commandeArray(produit.name, produit.imageUrl, produit.description, produit._id, colorValue, currentQuantite, produit.price)
                 localStorage.setItem(commandeTitle, JSON.stringify(commande))
             } else {
-                let commande = new commandeArray(produit.name,produit.imageUrl,produit.description,produit._id,colorValue,quantiteValue,produit.price)
+                let commande = new commandeArray(produit.name, produit.imageUrl, produit.description, produit._id, colorValue, quantiteValue, produit.price)
                 localStorage.setItem(commandeTitle, JSON.stringify(commande))
             }
         } else {
-            let commande = new commandeArray(produit.name,produit.imageUrl,produit.description,produit._id,colorValue,quantiteValue,produit.price)
+            let commande = new commandeArray(produit.name, produit.imageUrl, produit.description, produit._id, colorValue, quantiteValue, produit.price)
             localStorage.setItem(commandeTitle, JSON.stringify(commande))
         }
 
@@ -120,7 +121,7 @@ const showProduit = async () => {
 
     })
 
-    for (let i = 0; i < select.length; i++) {
+    for (let i=0; i<select.length; i++) {
         select[i].addEventListener('change', function () {
             if ((select[0].selectedIndex > 0) && (select[1].selectedIndex > 0)) {
                 buttonArray.removeAttribute('disabled')

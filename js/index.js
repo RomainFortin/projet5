@@ -2,114 +2,54 @@ const teddiesUrl = "http://localhost:3000/api/teddies/";
 const camerasUrl = "http://localhost:3000/api/cameras";
 const furnituresUrl = "http://localhost:3000/api/furniture";
 
-const teddiesDiv = document.querySelector('.teddies')
-const camerasDiv = document.querySelector('.cameras')
-const furnituresDiv = document.querySelector('.furnitures')
-
-const fetchTeddies = async () => {
+const fetchApi = async () => {
     teddies = await fetch(teddiesUrl).then(res => res.json());
-}
-const fetchCameras = async () => {
     cameras = await fetch(camerasUrl).then(res => res.json());
-}
-const fetchFurnitures = async () => {
     furnitures = await fetch(furnituresUrl).then(res => res.json());
 }
 
-const showTeddies = async () => {
-    await fetchTeddies()
+class produitTemplate {
+    constructor(name, produit, legende ,choices) {
+        this.name = name;
+        this.produit = produit;
+        this.legende = legende;
+        this.choices = choices
 
-    for (var i = 0; i < teddies.length; i++) {
-        var color = teddies[i].colors;
+        for (let i = 0; i < produit.length; i++) {
+            var itemChoice = produit[i][choices];
 
-        function colors(colors) {
-            return colors.map(color => `<p>${color}</p>`).join("");
-        }
+            function choice(a) {
+                return a.map(itemChoice => `<p>${itemChoice}</p>`).join("");
+            }
 
-        teddiesDiv.innerHTML += (
-            `
+            document.querySelector('.'+name+'').innerHTML += (
+                `
                 <div class='article'>
-                    <img src='${teddies[i].imageUrl}' alt=''>
+                    <img src='${produit[i].imageUrl}' alt=''>
                     <div class='title'>
-                        <h3 class='name'>${teddies[i].name}</h3>
-                        <p class='price'>${teddies[i].price/100} €</p>
+                        <h3 class='name'>${produit[i].name}</h3>
+                        <p class='price'>${produit[i].price/100} €</p>
                     </div>
                     <div class='legende'>
-                        <p>Couleurs:</p>
-                        ${color ? colors(color):""} 
+                        <p>${legende}:</p>
+                        ${itemChoice ? choice(itemChoice):""} 
                     </div>
                     <button>
-                        <a class="idLink" href='/teddies/${teddies[i]._id}'>Détails
+                        <a class="idLink" href='/${name}/${produit[i]._id}'>Détails</a>
                     </button>
                 </div>
             `
-        )
+            )
+        }
     }
 }
 
 
-const showCameras = async () => {
-    await fetchCameras()
-
-    for (var i = 0; i < cameras.length; i++) {
-        var lens = cameras[i].lenses;
-
-        function lenses(lenses) {
-            return lenses.map(lens => `<p>${lens}</p>`).join("");
-        }
-        camerasDiv.innerHTML += (
-
-            `
-                <div class='article'>
-                    <img src='${cameras[i].imageUrl}' alt=''>
-                    <div class='title'>
-                        <h3 class='name'>${cameras[i].name}</h3>
-                        <p class='price'>${cameras[i].price/100} €</p>
-                    </div>
-                    <div class='legende'>
-                        <p>Couleurs:</p>
-                        ${lenses ? lenses(lens):""}   
-                    </div>
-                    <button>
-                        <a class="idLink" href='/cameras/${cameras[i]._id}'>Détails</a>
-                    </button>
-                </div>
-            `
-        )
-    }
-}
-const showFurnitures = async () => {
-    await fetchFurnitures()
-
-    for (var i = 0; i < furnitures.length; i++) {
-        var varnish = furnitures[i].varnish;
-
-        function varnishes(varnishes) {
-            return varnishes.map(varnish => `<p>${varnish}</p>`).join("");
-        }
-        furnituresDiv.innerHTML += (
-            `
-                <div class='article'>
-                    <img src='${furnitures[i].imageUrl}' alt=''>
-                    <div class='title'>
-                        <h3 class='name'>${furnitures[i].name}</h3>
-                        <p class='price'>${furnitures[i].price/100}€</p>
-                    </div>
-                    <div class='legende'>
-                        <p>Couleurs:</p>
-                        ${varnishes ? varnishes(varnish):""}    
-                    </div>
-                    <button>
-                        <a class="idLink" href='/furniture/${furnitures[i]._id}'>Détails</a>
-                    </button>
-                </div>
-            `
-        )
-    }
+const showProducts = async () => {
+    await fetchApi()
+    new produitTemplate("teddies", teddies, "Couleurs", "colors")
+    new produitTemplate("cameras", cameras,"Objectifs", "lenses")
+    new produitTemplate("furniture", furnitures,"Vernis", "varnish")
 }
 
-showTeddies()
-showCameras()
-showFurnitures()
-
-
+showProducts()
