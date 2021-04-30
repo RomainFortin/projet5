@@ -11,6 +11,13 @@
     }
 }
 
+@mixin font($size, $weight){
+    font: {
+        size: $size;
+        weight: $weight;
+    }
+}
+
 @mixin transition {
     transition: 0.3s;
 } 

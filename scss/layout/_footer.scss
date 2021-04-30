@@ -16,18 +16,11 @@ footer {
                 
             h3 {
                 margin-bottom: 10px;
-                font: {
-                    size: 16px;
-                    weight: 700;
-                }
             }
             a {
+                @include font(12px, 500);
                 margin: 7px 0;
                 text-decoration: none;
-                font: {
-                    size: 14px;
-                    weight: 500;
-                }
             }
         }
     }
@@ -38,11 +31,8 @@ footer {
             margin: 30px;
             text-decoration: none;
             i {
+                @include font(35px, 500);
                 color: $darkPurple;
-                font: {
-                    size: 35px;
-                    weight: 500;
-                }
             }
         }
     }

@@ -1,3 +1,7 @@
+import {
+    order
+} from './service.js';
+
 // URL LOCALHOST
 const url = window.location.href.split('http://localhost:3000/', 2);
 
@@ -6,9 +10,12 @@ const produitUrl = "http://localhost:3000/api/" + url[1] + "";
 
 const section = document.querySelector('main');
 
+let produit = ""
+
 const fetchProduit = async () => {
     produit = await fetch(produitUrl).then(res => res.json());
 }
+
 
 const showProduit = async () => {
     await fetchProduit()
@@ -51,18 +58,8 @@ const showProduit = async () => {
                                 ${choice ? choices(choice):""}
                             </select>
                         </label>
-                        <label for="choice">Quantité:
-                            <select name="choice" class="choice" required> 
-                                <option value="" disabled selected value>Choississez une quantité</option>
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                                <option value="3">3</option>
-                                <option value="4">4</option>
-                                <option value="5">5</option>
-                            </select>
-                        </label>
                     </div>
-                    <button disabled class="buttonLink">
+                    <button disabled class="order">
                         Commander
                     </button>
                 </div>
@@ -72,46 +69,34 @@ const showProduit = async () => {
     )
 
     const totalPanier = document.querySelector('.panier .total')
-    var buttonArray = document.querySelector('button.buttonLink')
-    var select = document.querySelectorAll('select');
-
-    class commandeArray {
-        constructor(name, imageUrl, description, id, color, quantite, price) {
-            this.name = name;
-            this.imageUrl = imageUrl;
-            this.description = description;
-            this.id = id;
-            this.color = color;
-            this.quantite = parseInt(quantite);
-            this.price = price;
-        }
-    }
+    var buttonArray = document.querySelector('button.order')
+    var select = document.querySelector('select');
 
     buttonArray.addEventListener('click', function () {
 
-        let colorValue = select[0].value;
-        let quantiteValue = select[1].value
-        let commandeTitle = produit.name + colorValue;
+        let choiceValue = select.value;
 
-        if (localStorage.length > 0) {
-            if (localStorage.getItem(commandeTitle) != null) {
-                let currentQuantite = JSON.parse(localStorage.getItem(commandeTitle)).quantite + parseInt(quantiteValue);
-                let commande = new commandeArray(produit.name, produit.imageUrl, produit.description, produit._id, colorValue, currentQuantite, produit.price)
-                localStorage.setItem(commandeTitle, JSON.stringify(commande))
+        let currentOrder = JSON.parse(localStorage.getItem('orinoco'))
+
+        
+
+
+        if (currentOrder != null) {
+
+            if(currentOrder.findIndex(e => e.choice === choiceValue) < 0) {
+                new order(choiceValue, produit, produitUrl).addOrder()
             } else {
-                let commande = new commandeArray(produit.name, produit.imageUrl, produit.description, produit._id, colorValue, quantiteValue, produit.price)
-                localStorage.setItem(commandeTitle, JSON.stringify(commande))
+                localStorage.setItem('orinoco', JSON.stringify(currentOrder))
             }
+                
         } else {
-            let commande = new commandeArray(produit.name, produit.imageUrl, produit.description, produit._id, colorValue, quantiteValue, produit.price)
-            localStorage.setItem(commandeTitle, JSON.stringify(commande))
+          new order(choiceValue, produit, produitUrl).placeOrder()
         }
 
-        select[0].selectedIndex = 0;
-        select[1].selectedIndex = 0;
+        select.selectedIndex = 0;
         buttonArray.setAttribute('disabled', "")
 
-        totalPanier.innerHTML = localStorage.length;
+        totalPanier.innerHTML = JSON.parse(localStorage.getItem('orinoco')).length;
 
         if (localStorage.length > 0) {
             totalPanier.classList.add('isFilled')
@@ -121,13 +106,11 @@ const showProduit = async () => {
 
     })
 
-    for (let i=0; i<select.length; i++) {
-        select[i].addEventListener('change', function () {
-            if ((select[0].selectedIndex > 0) && (select[1].selectedIndex > 0)) {
+        select.addEventListener('change', function () {
+            if ((select.selectedIndex > 0)) {
                 buttonArray.removeAttribute('disabled')
             }
         })
-    }
 
 }
 

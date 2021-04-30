@@ -1,58 +1,59 @@
 button {
     @include displayFlex(row, center , center);
+    @include font(12px, 700);
     background-color: $blue;
     border: none;
     border-radius: 10px;
     color: #fff;
-    height: 45px;
-    font: {
-        size: 14px;
-        weight: 700;
-    }
-}
-button.buttonLink {
+    height: 40px;
     cursor: pointer;
-    width: 230px;
-    height: 45px;
-
-        &:after {
-            @include transition;
-            opacity: 0;
-            content: "\f218";
-            position: absolute;
-            color: #fff;
-            transform: translateX(50px);
-
-            font: {
-                family: "Font Awesome 5 Free";
-                size: 16px;
-                weight: 700;
-            }
-        }
-
-        &:hover:after {
-            transform: translateX(65px);
-            opacity: 1;
-        }
-
-        &[disabled]{
-            cursor: default;
-            background-color: $lightBlue;
+    &.order{
+        width: 200px;
+    
             &:after {
-                display: none;
+                @include transition;
+                @include font(14px, 700);
+                opacity: 0;
+                content: "\f218";
+                position: absolute;
+                color: #fff;
+                transform: translateX(40px);
             }
+    
+            &:hover:after {
+                transform: translateX(60px);
+                opacity: 1;
+            }
+    
+            &[disabled]{
+                cursor: default;
+                background-color: $lightBlue;
+                &:after {
+                    display: none;
+                }
+            }
+    }
+    
+    &.clear {
+        @include font(12px, 500);
+        background-color: $red;
+    }
+    &.validate {
+        @include font(12px, 700);
+        background-color: $green;
+    }
+    &:after, & a:after{
+        font: {
+            family:"Font Awesome 5 Free";
         }
+    }
 }
 
 p.price {
+    @include font(12px, 700);
     background-color: $darkPurple;
     border-radius: 5px;
     padding: 5px 15px;
     color: #fff;
     white-space: nowrap;
-
-    font: {
-        size: 14px;
-        weight: 700;
-    }
 }

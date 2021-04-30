@@ -5,7 +5,8 @@ label{
 }
 select {
     border-color:$darkGrey;
+    @include font(12px, 500);
     margin-left: 10px;
     border-radius: 5px;
-    padding: 5px;
+    padding: 2px;
 }

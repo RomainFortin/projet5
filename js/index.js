@@ -8,48 +8,37 @@ const fetchApi = async () => {
     furnitures = await fetch(furnituresUrl).then(res => res.json());
 }
 
-class produitTemplate {
-    constructor(name, produit, legende ,choices) {
-        this.name = name;
-        this.produit = produit;
-        this.legende = legende;
-        this.choices = choices
+function produitTemplate(name, produit) {
 
-        for (let i = 0; i < produit.length; i++) {
-            var itemChoice = produit[i][choices];
+    function insertTemplate(i){
 
-            function choice(a) {
-                return a.map(itemChoice => `<p>${itemChoice}</p>`).join("");
-            }
-
-            document.querySelector('.'+name+'').innerHTML += (
-                `
+        document.querySelector('.' + name + '').innerHTML += (
+            `
                 <div class='article'>
-                    <img src='${produit[i].imageUrl}' alt=''>
+                <img src='${produit[i].imageUrl}' alt=''>
                     <div class='title'>
                         <h3 class='name'>${produit[i].name}</h3>
                         <p class='price'>${produit[i].price/100} €</p>
                     </div>
-                    <div class='legende'>
-                        <p>${legende}:</p>
-                        ${itemChoice ? choice(itemChoice):""} 
-                    </div>
-                    <button>
+                    <button class="details">
                         <a class="idLink" href='/${name}/${produit[i]._id}'>Détails</a>
                     </button>
                 </div>
             `
-            )
-        }
+        )
+    }
+
+    for (let i = 0; i < produit.length; i++) {
+        insertTemplate(i)
     }
 }
 
 
 const showProducts = async () => {
     await fetchApi()
-    new produitTemplate("teddies", teddies, "Couleurs", "colors")
-    new produitTemplate("cameras", cameras,"Objectifs", "lenses")
-    new produitTemplate("furniture", furnitures,"Vernis", "varnish")
+    produitTemplate("teddies", teddies, "Couleurs", "colors")
+    produitTemplate("cameras", cameras, "Objectifs", "lenses")
+    produitTemplate("furniture", furnitures, "Vernis", "varnish")
 }
 
 showProducts()

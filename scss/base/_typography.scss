@@ -5,28 +5,27 @@ a, p, h1, h2, h3, h4, h5, h6, button, span, label, select {
         family:'Montserrat', sans-serif;
     }
 }  
-
-h2 {
-    color: $darkGrey;
-
+i{
     font: {
-        size: 22px;
-        weight: 700;
+        family:"Font Awesome 5 Free";
     }
+}
+
+h1 {
+    @include font(18px, 700);
+    color: $darkGrey;
+}
+h2 {
+    @include font(16px, 700);
+    color: $darkGrey;
 }
 
 h3 {
+    @include font(14px, 700);
     color: $darkGrey;
-
-    font: {
-        size: 16px;
-        weight: 700;
-    }
 }
 
+
 label {
-    font: {
-        size: 14px;
-        weight: 700;
-    }
+    @include font(14px, 700);
 }

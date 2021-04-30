@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orinoco</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
     <link rel="stylesheet" href="/css/main.css">
 </head>
+
 <body>
     <header>
         <a id="logo" href="/">
@@ -22,10 +26,22 @@
         </nav>
     </header>
 
-    <main>
-        <h2>Panier</h2>
-        <div class="container"></div>
-        <button class="clear">Clear</button>
+    <main id="basket">
+        <h1>Panier</h1>
+        <div class="container oursons">
+            <h2>Oursons</h2>
+        </div>
+        <div class="container cameras">
+            <h2>Cameras</h2>
+        </div>
+        <div class="container furniture">
+            <h2>Meubles</h2>
+        </div>
+        <div class="basket_bottom">
+            <button class="clear"><i class="fas fa-times"></i>Vider le panier</button>
+            <button class="validate"><i class="fas fa-check"></i><a href="/validate">Valider</a></button>
+            <p class="totalPrice"></p>
+        </div>
     </main>
 
     <footer>
@@ -54,8 +70,8 @@
                 <a href="/">Oribook</a>
                 <a href="/">Oritextil</a>
             </div>
-            </div>
-            <div class="social">
+        </div>
+        <div class="social">
             <a href="/">
                 <i class="fab fa-facebook-square"></i>
             </a>
@@ -65,11 +81,12 @@
             <a href="/">
                 <i class="fab fa-instagram-square"></i>
             </a>
-            </div>
-            <img src="/assets/15675819263013_image1.png" alt="">
+        </div>
+        <img src="/assets/15675819263013_image1.png" alt="">
     </footer>
 
     <script src="/js/header.js"></script>
-    <script src="/js/panier.js"></script>
+    <script type="module" src="/js/panier.js"></script>
 </body>
+
 </html>

@@ -1,23 +1,23 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Orinoco</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
+        integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
+        crossorigin="anonymous" />
     <link rel="stylesheet" href="/css/main.css">
 </head>
+
 <body>
     <header>
         <a id="logo" href="/">
             <img src="/assets/15675819263013_image1.png" alt="">
         </a>
         <nav>
-            <a href="/compte" class="compte">
-                <i class="fas fa-user-circle"></i>
-                Compte
-            </a>
             <a href="/panier" class="panier">
                 <div class="total"></div>
                 <i class="fas fa-shopping-basket"></i>
@@ -26,8 +26,20 @@
         </nav>
     </header>
 
-    <main id="account">
-        <h2>Compte</h2>
+    <main id="basket">
+        <h1>Validation</h1>
+        <div class="container">
+            <h2>Oursons</h2>
+            <form action="POST">
+                <input type="text" placeholder="firstName" required>
+                <input type="text" placeholder="lastName" required>
+                <input type="text" placeholder="address" required>
+                <input type="text" placeholder="city" required>
+                <input type="email" placeholder="email" required>
+                <button type="submit">Valider</button>
+            </form>
+        </div>
+
     </main>
 
     <footer>
@@ -56,8 +68,8 @@
                 <a href="/">Oribook</a>
                 <a href="/">Oritextil</a>
             </div>
-            </div>
-            <div class="social">
+        </div>
+        <div class="social">
             <a href="/">
                 <i class="fab fa-facebook-square"></i>
             </a>
@@ -67,14 +79,11 @@
             <a href="/">
                 <i class="fab fa-instagram-square"></i>
             </a>
-            </div>
-            <img src="/assets/15675819263013_image1.png" alt="">
+        </div>
+        <img src="/assets/15675819263013_image1.png" alt="">
     </footer>
-    
-    <div class="scrollToTop"></div>
 
-    <script src="/js/produit.js"></script>
-    <script src="/js/inject.js"></script>
     <script src="/js/header.js"></script>
 </body>
+
 </html>

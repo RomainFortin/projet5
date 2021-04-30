@@ -1,7 +1,5 @@
 .produit {
-    @include transition;
     @include displayFlex(false, false, false);
-    height: 370px;
     margin: 15px;
     flex: 1;
     background-color: #fff;
@@ -12,7 +10,7 @@
     picture {
         img {
             width: auto;
-            height: 330px;
+            height: 250px;
         }
     }
 
@@ -25,10 +23,15 @@
                 margin-left: 20px;
             }
         }
+        p.description{
+            @include font(12px, 500);
+        }
         .selection{
-            @include displayFlex(column, space-between, flex-start);
+            @include displayFlex(row, space-between, center);
+            width: 70%;
+            label {
+                @include font(12px, 700);
+            }
         }
     }
-
-
 }

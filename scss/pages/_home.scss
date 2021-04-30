@@ -1,17 +1,20 @@
-.containerHeader{
+main#home{
+    .container:nth-child(2){
+        margin-top: 0;
+    }
+}
+
+.containerHeader {
     @include displayFlex(row, space-between, center);
     width: 100%;
     padding: 15px;
-    a{
+
+    a {
+        @include font(14px, 500);
         text-decoration: none;
         color: $blue;
-
-        font: {
-            size: 14px;
-            weight: 500;
-        }
+    }
 }
-} 
 
 .wrapper {
     @include displayFlex(row, space-between);
@@ -35,26 +38,10 @@
         }
 
         div.title {
-            @include displayFlex(row, space-between, flex-start);
+            @include displayFlex(row, space-between, center);
             margin-top: 10px;
             height: 40px;
         }
-
-        div.legende {
-            margin-top: 10px;
-            flex: 1;
-
-            p {
-                font-size: 14px;
-                font-weight: 500;
-
-                &:nth-child(1) {
-                    font-weight: 700;
-                }
-
-            }
-        }
-
 
 
         button {
@@ -69,28 +56,18 @@
                 color: #fff;
                 padding: 15px;
 
-                font: {
-                    size: 14px;
-                    weight: 700;
-                }
-
                 &:after {
                     @include transition;
+                    @include font(14px, 700);
                     opacity: 0;
                     content: "\f35a";
                     position: absolute;
                     color: #fff;
                     transform: translateX(30px);
-
-                    font: {
-                        family: "Font Awesome 5 Free";
-                        size: 16px;
-                        weight: 700;
-                    }
                 }
 
                 &:hover:after {
-                    transform: translateX(45px);
+                    transform: translateX(40px);
                     opacity: 1;
                 }
             }

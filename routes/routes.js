@@ -33,5 +33,10 @@ router.get('/panier', function (req, res) {
     root: './'
   });
 });
+router.get('/validate', function (req, res) {
+  res.sendFile('/pages/validate.html', {
+    root: './'
+  });
+});
 
 module.exports = router;

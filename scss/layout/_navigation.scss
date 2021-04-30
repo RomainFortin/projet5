@@ -8,7 +8,7 @@ nav {
     }
 
     i {
-        font-size: 20px;
+        @include font(20px, 700);
         margin-right: 10px;
     }
 
@@ -44,6 +44,7 @@ nav {
         .total {
             @include transition;
             @include displayFlex(false, center, center);
+            @include font(12px, 700);
             position: absolute;
             top: 0;
             left: -10px;
@@ -53,10 +54,6 @@ nav {
             transform: scale(0);
             border-radius: 50%;
             color: #fff;
-            font: {
-                size: 12px;
-                weight: 700;
-            }
             &.isFilled {
                 transform: scale(1);
             }
