@@ -5,6 +5,6 @@ const furnitureCtrl = require('../controllers/furniture');
 
 router.get('/', furnitureCtrl.getAllFurniture);
 router.get('/:id', furnitureCtrl.getOneFurniture);
-router.post('/order', furnitureCtrl.orderFurniture);
+// router.post('/order', furnitureCtrl.orderFurniture);
 
 module.exports = router;

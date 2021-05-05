@@ -2,11 +2,16 @@ import {
     order
 } from './service.js';
 
+
+
 // URL LOCALHOST
-const url = window.location.href.split('http://localhost:3000/', 2);
+const urlApi = new URL(window.location.href).searchParams.get('api')
+const urlId = new URL(window.location.href).searchParams.get('id')
 
 // URL API
-const produitUrl = "http://localhost:3000/api/" + url[1] + "";
+const produitUrl = window.location.origin+"/api/" + urlApi+"/"+urlId;
+
+console.log(produitUrl);
 
 const section = document.querySelector('main');
 
@@ -52,10 +57,20 @@ const showProduit = async () => {
                     </div>
                     <p class='description'>${produit.description}</p>
                     <div class="selection">
-                        <label for="choice">${legende}
-                            <select name="choice" class="choice" required>
+                        <label for="choiceValue">${legende}
+                            <select name="choice" id="choiceValue" required>
                                 <option value="" disabled selected value>${option}</option>
                                 ${choice ? choices(choice):""}
+                            </select>
+                        </label for="amountValue">
+                        <label>Quantité:
+                            <select name="choice" id="amountValue" required>
+                            <option value="" disabled selected value>Choisissez une quantité</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
                             </select>
                         </label>
                     </div>
@@ -70,35 +85,34 @@ const showProduit = async () => {
 
     const totalPanier = document.querySelector('.panier .total')
     var buttonArray = document.querySelector('button.order')
-    var select = document.querySelector('select');
+    var select = document.querySelectorAll('select');
 
     buttonArray.addEventListener('click', function () {
 
-        let choiceValue = select.value;
+        let choiceValue = select[0].value;
+        let amountValue = parseInt(select[1].value);
 
         let currentOrder = JSON.parse(localStorage.getItem('orinoco'))
 
-        
-
-
         if (currentOrder != null) {
 
-            if(currentOrder.findIndex(e => e.choice === choiceValue) < 0) {
-                new order(choiceValue, produit, produitUrl).addOrder()
+            if(currentOrder.findIndex(e => e.choice === choiceValue) < 0 && currentOrder.findIndex(e => e.name === name)) {
+                new order(choiceValue, amountValue,produit, produitUrl).addOrder()
             } else {
-                localStorage.setItem('orinoco', JSON.stringify(currentOrder))
+                new order(choiceValue, amountValue,produit, produitUrl).modifyOrder()
             }
                 
         } else {
-          new order(choiceValue, produit, produitUrl).placeOrder()
+          new order(choiceValue, amountValue, produit, produitUrl).placeOrder()
         }
 
-        select.selectedIndex = 0;
+        select[0].selectedIndex = 0;
+        select[1].selectedIndex = 0;
         buttonArray.setAttribute('disabled', "")
 
         totalPanier.innerHTML = JSON.parse(localStorage.getItem('orinoco')).length;
 
-        if (localStorage.length > 0) {
+        if (localStorage.getItem('orinoco').length) {
             totalPanier.classList.add('isFilled')
         } else {
             totalPanier.classList.remove('isFilled')
@@ -106,11 +120,14 @@ const showProduit = async () => {
 
     })
 
-        select.addEventListener('change', function () {
-            if ((select.selectedIndex > 0)) {
+    for (let i = 0; i <select.length; i++){
+        select[i].addEventListener('change', function () {
+            if ((select[0].selectedIndex > 0) && (select[1].selectedIndex > 0)) {
                 buttonArray.removeAttribute('disabled')
             }
         })
+    }
+        
 
 }
 

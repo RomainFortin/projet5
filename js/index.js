@@ -1,16 +1,17 @@
-const teddiesUrl = "http://localhost:3000/api/teddies/";
+const teddiesUrl = "http://localhost:3000/api/teddies";
 const camerasUrl = "http://localhost:3000/api/cameras";
 const furnituresUrl = "http://localhost:3000/api/furniture";
 
 const fetchApi = async () => {
-    teddies = await fetch(teddiesUrl).then(res => res.json());
-    cameras = await fetch(camerasUrl).then(res => res.json());
-    furnitures = await fetch(furnituresUrl).then(res => res.json());
+    teddies = await fetch(teddiesUrl).then(res => res.json()).catch(error => console.log(error))
+    cameras = await fetch(camerasUrl).then(res => res.json()).catch(error => console.log(error))
+    furnitures = await fetch(furnituresUrl).then(res => res.json()).catch(error => console.log(error))
 }
+
 
 function produitTemplate(name, produit) {
 
-    function insertTemplate(i){
+    function insertTemplate(i) {
 
         document.querySelector('.' + name + '').innerHTML += (
             `
@@ -21,7 +22,7 @@ function produitTemplate(name, produit) {
                         <p class='price'>${produit[i].price/100} €</p>
                     </div>
                     <button class="details">
-                        <a class="idLink" href='/${name}/${produit[i]._id}'>Détails</a>
+                        <a class="idLink" href='/product?api=${name}&id=${produit[i]._id}'>Détails</a>
                     </button>
                 </div>
             `
@@ -36,9 +37,30 @@ function produitTemplate(name, produit) {
 
 const showProducts = async () => {
     await fetchApi()
-    produitTemplate("teddies", teddies, "Couleurs", "colors")
-    produitTemplate("cameras", cameras, "Objectifs", "lenses")
-    produitTemplate("furniture", furnitures, "Vernis", "varnish")
+    
+
+    if (teddies.length){
+        produitTemplate("teddies", teddies)
+    } else {
+        document.querySelector('.teddies').innerHTML = "ERROR"
+    }
+
+    if (cameras.length){
+        produitTemplate("cameras", cameras)
+    } else {
+        document.querySelector('.cameras').innerHTML = "ERROR"
+    }
+
+    if (furnitures.length){
+        produitTemplate("furniture", furnitures)
+    } else {
+        document.querySelector('.furniture').innerHTML = "ERROR"
+    }
+
+    if (!teddies.length && !cameras.length && !furnitures.length){
+        window.location = '/404'
+    }
+
 }
 
 showProducts()

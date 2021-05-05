@@ -1,6 +1,9 @@
 const express = require('express');
-const path = require('path');
 const router = express.Router();
+
+const teddyCtrl = require('../controllers/teddy');
+const furnitureCtrl = require('../controllers/furniture');
+const cameraCtrl = require('../controllers/camera');
 
 router.get('/', function (req, res) {
   res.sendFile('index.html', {
@@ -8,23 +11,8 @@ router.get('/', function (req, res) {
   });
 });
 
-router.get('/teddies/:id', function (req, res) {
+router.get('/product', function (req, res) {
   res.sendFile('/pages/produit.html', {
-    root: './'
-  });
-});
-router.get('/cameras/:id', function (req, res) {
-  res.sendFile('/pages/produit.html', {
-    root: './'
-  });
-});
-router.get('/furniture/:id', function (req, res) {
-  res.sendFile('/pages/produit.html', {
-    root: './'
-  });
-});
-router.get('/compte', function (req, res) {
-  res.sendFile('/pages/compte.html', {
     root: './'
   });
 });
@@ -35,6 +23,12 @@ router.get('/panier', function (req, res) {
 });
 router.get('/validate', function (req, res) {
   res.sendFile('/pages/validate.html', {
+    root: './'
+  });
+});
+router.post('/order', cameraCtrl.getAllCameras);
+router.get('/404', function (req, res) {
+  res.sendFile('/pages/404.html', {
     root: './'
   });
 });

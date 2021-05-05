@@ -1,6 +1,6 @@
 const totalPanier = document.querySelector('.panier .total')
 
-if(localStorage.length != 0){
+if(localStorage.getItem('orinoco')){
     totalPanier.innerHTML = JSON.parse(localStorage.getItem('orinoco')).length;
 }
 

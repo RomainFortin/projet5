@@ -3,7 +3,7 @@ button {
     @include font(12px, 700);
     background-color: $blue;
     border: none;
-    border-radius: 10px;
+    border-radius: 5px;
     color: #fff;
     height: 40px;
     cursor: pointer;
@@ -33,13 +33,28 @@ button {
                 }
             }
     }
+
+    &.baksetButton {
+        @include displayFlex(row, center , center);
+        width: 150px;
+        i {
+            @include font(14px, 700);
+            margin-right: 10px;
+        }
+    }
     
     &.clear {
         @include font(12px, 500);
         background-color: $red;
     }
     &.validate {
-        @include font(12px, 700);
+        a {
+            @include displayFlex(row, center , center);
+            height: 100%;
+            width: 100%;
+            text-decoration: none;
+            color: #fff;
+        }
         background-color: $green;
     }
     &:after, & a:after{

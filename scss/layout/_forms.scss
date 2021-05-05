@@ -1,0 +1,10 @@
+form{
+    @include displayFlex(column, false, flex-start);
+    position: relative;
+}
+input {
+    border-style:solid;
+    @include font(12px, 500);
+    border-radius: 5px;
+    padding: 5px;
+}

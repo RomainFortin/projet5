@@ -2,7 +2,7 @@ header {
     @include displayFlex(row, space-between, center);
     padding: $mainPadding;
     width: 100%;
-    height: 100px;
+    height: $headerHeight;
     box-shadow: 0 0 8px 3px #d1d1d1;
     background-color: $lightPurple;
 

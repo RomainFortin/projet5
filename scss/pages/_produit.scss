@@ -29,9 +29,6 @@
         .selection{
             @include displayFlex(row, space-between, center);
             width: 70%;
-            label {
-                @include font(12px, 700);
-            }
         }
     }
 }

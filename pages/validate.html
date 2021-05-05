@@ -15,7 +15,7 @@
 <body>
     <header>
         <a id="logo" href="/">
-            <img src="/assets/15675819263013_image1.png" alt="">
+            <img src="/assets/logo.png" alt="">
         </a>
         <nav>
             <a href="/panier" class="panier">
@@ -29,15 +29,19 @@
     <main id="basket">
         <h1>Validation</h1>
         <div class="container">
-            <h2>Oursons</h2>
-            <form action="POST">
-                <input type="text" placeholder="firstName" required>
-                <input type="text" placeholder="lastName" required>
-                <input type="text" placeholder="address" required>
-                <input type="text" placeholder="city" required>
-                <input type="email" placeholder="email" required>
-                <button type="submit">Valider</button>
-            </form>
+                <label for="firstName">Prénom</label>
+                <input type="text" id="firstName" placeholder="Prénom" required>
+                <label for="lastName">Nom</label>
+                <input type="text" id="lastName" placeholder="Nom" required>
+                <label for="address">Adresse</label>
+                <input type="text" id="address" placeholder="Adresse" required>
+                <label for="postalCode">Code postal</label>
+                <input type="text" id="postalCode" placeholder="Code postal" required>
+                <label for="city">Ville</label>
+                <input type="text" id="city" placeholder="Ville" required>
+                <label for="email">Email</label>
+                <input type="email" id="email" placeholder="Email" required>
+                <button type="">Valider</button>
         </div>
 
     </main>
@@ -84,6 +88,7 @@
     </footer>
 
     <script src="/js/header.js"></script>
+    <script src="/js/validate.js"></script>
 </body>
 
 </html>
