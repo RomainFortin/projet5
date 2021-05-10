@@ -1,11 +1,8 @@
-const totalPanier = document.querySelector('.panier .total')
+const totalBasket = document.querySelector('.basket .total')
 
-if(localStorage.getItem('orinoco')){
-    totalPanier.innerHTML = JSON.parse(localStorage.getItem('orinoco')).length;
-}
-
-if (localStorage.length>0){
-    totalPanier.classList.add('isFilled')
+if(localStorage.getItem('orinoco') != null){
+    totalBasket.innerHTML = JSON.parse(localStorage.getItem('orinoco')).length;
+    totalBasket.classList.add('isFilled')
 } else {
-    totalPanier.classList.remove('isFilled')
+    totalBasket.classList.remove('isFilled')
 }

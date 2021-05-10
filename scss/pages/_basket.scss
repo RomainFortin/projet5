@@ -102,10 +102,11 @@
                         background-color: #fff;
                         border-radius: 5px;
                         z-index: 1000;
+                        padding: 10px;
                         width: 200px;
                         height: 150px;
                         box-shadow: 0 0 5px 2px #dadada;
-                        @include displayFlex(column, space-around, center);
+                        @include displayFlex(column, space-evenly, center);
 
                         .validate {
                             @include displayFlex(row, space-around, center);
@@ -113,6 +114,27 @@
                         &.visible {
                             visibility: visible;
                         }
+
+                        p {
+                            @include font(12px, 700);
+                            align-self: flex-start;
+                        }
+
+                        i {
+                            position: absolute;
+                            cursor: pointer;
+                            top: 10px;
+                            right: 10px;
+                        }
+
+                        input {
+                            width: 100%;
+                        }
+
+                        button {
+                            margin-left: 0 !important;
+                        }
+
                     }
                 }
 

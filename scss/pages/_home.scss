@@ -60,19 +60,17 @@ main#home{
                     @include transition;
                     @include font(14px, 700);
                     opacity: 0;
-                    content: "\f35a";
+                    content: "\f05a";
                     position: absolute;
                     color: #fff;
-                    transform: translateX(30px);
+                    transform: translateX(-20px);
                 }
 
                 &:hover:after {
-                    transform: translateX(40px);
+                    transform: translateX(-35px);
                     opacity: 1;
                 }
             }
-
-
         }
 
         &:hover {

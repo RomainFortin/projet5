@@ -21,7 +21,7 @@ button {
             }
     
             &:hover:after {
-                transform: translateX(60px);
+                transform: translateX(55px);
                 opacity: 1;
             }
     
@@ -62,6 +62,7 @@ button {
             family:"Font Awesome 5 Free";
         }
     }
+
 }
 
 p.price {

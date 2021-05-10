@@ -1,9 +1,6 @@
 const express = require('express');
 const router = express.Router();
 
-const teddyCtrl = require('../controllers/teddy');
-const furnitureCtrl = require('../controllers/furniture');
-const cameraCtrl = require('../controllers/camera');
 
 router.get('/', function (req, res) {
   res.sendFile('index.html', {
@@ -12,12 +9,12 @@ router.get('/', function (req, res) {
 });
 
 router.get('/product', function (req, res) {
-  res.sendFile('/pages/produit.html', {
+  res.sendFile('/pages/product.html', {
     root: './'
   });
 });
-router.get('/panier', function (req, res) {
-  res.sendFile('/pages/panier.html', {
+router.get('/basket', function (req, res) {
+  res.sendFile('/pages/basket.html', {
     root: './'
   });
 });
@@ -26,9 +23,8 @@ router.get('/validate', function (req, res) {
     root: './'
   });
 });
-router.post('/order', cameraCtrl.getAllCameras);
-router.get('/404', function (req, res) {
-  res.sendFile('/pages/404.html', {
+router.get('/success', function (req, res) {
+  res.sendFile('/pages/success.html', {
     root: './'
   });
 });

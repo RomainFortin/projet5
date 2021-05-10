@@ -38,11 +38,10 @@ nav {
         }
     }
 
-    .panier {
+    .basket {
         position: relative;
 
         .total {
-            @include transition;
             @include displayFlex(false, center, center);
             @include font(12px, 700);
             position: absolute;

@@ -6,11 +6,12 @@ let price = []
 
 let orderProduct = []
 
-let section = '';
+let section;
 
 function injectTemplate(product, choice, api) {
 
     let orderIndex = orderArray.findIndex(e => e.choice === product.choice && e.name === product.name)
+
     section.innerHTML += (
         `
         <div class="product-order">
@@ -37,8 +38,9 @@ function injectTemplate(product, choice, api) {
                         <button class="modify">Modifier</button>
                         <div class="modifyChoice" hidden="true">
                             <i class="closeModify fas fa-times"></i>
-                            <p>Modifier quantité:</p>
+                            <p>Quantité désirée:</p>
                             <input type="text">
+                            <button class="details">Valider</button>
                         </div>
                     </div>
                 </div>
@@ -50,32 +52,11 @@ function injectTemplate(product, choice, api) {
     </div>
      `
     )
-    
+
 }
 
-document.addEventListener('DOMContentLoaded', (event) => {
-    let deleteButton = document.querySelectorAll('p.delete');
 
-    for (let i = 0; i<deleteButton.length; i++) {
-        
-    }
-
-    deleteButton.forEach(item => {
-        item.addEventListener('click', event => {
-            let itemIndex = item.getAttribute("data-index")
-            orderArray.splice(itemIndex, 1);
-            localStorage.setItem('orinoco', JSON.stringify(orderArray))
-            document.location.reload();
-        })
-        
-    })
-
-  })
-
-
-
-
-if (orderArray) {
+if (orderArray && orderArray.length > 0) {
     for (let i = 0; i < orderArray.length; i++) {
         if (orderArray[i].url.includes('teddies')) {
             orderProduct.push(orderArray[i])
@@ -90,46 +71,62 @@ if (orderArray) {
             section = document.querySelector('main .container' + '.furniture' + '');
             injectTemplate(orderProduct[i], "Vernis", "furniture")
         }
+        price.push(orderProduct[i].price / 100)
+        const reducer = (accumulator, currentValue) => accumulator + currentValue;
+        document.querySelector('.totalPrice span').innerHTML = price.reduce(reducer) + ' €'
     }
-} else {
-    document.querySelector('#basket').innerHTML = `<h1>Panier</h1>`
-}
 
+    let modifyButton = document.querySelectorAll('button.modify')
+    let modifyChoice = document.querySelectorAll('.modifyChoice')
+    let closeModify = document.querySelectorAll('.closeModify');
+    let validateChoiceValue = document.querySelectorAll('.modifyChoice input');
+    let validateChoiceButton = document.querySelectorAll('.modifyChoice button');
 
-for (let i = 0; i < orderProduct.length; i++) {
-    price.push(orderProduct[i].price / 100)
-    const reducer = (accumulator, currentValue) => accumulator + currentValue;
-    document.querySelector('.totalPrice span').innerHTML = price.reduce(reducer) + ' €'
-}
-
-
-var modifyButton = document.querySelector('button.modify')
-var modifyChoice = document.querySelector('.modifyChoice')
-var closeModify = document.querySelector('.closeModify');
-
-function isVisible(a, b) {
-    if (b == "true") {
-        a.classList.add('visible')
-        a.setAttribute('hidden', "false")
-    } else {
-        a.classList.remove('visible')
-        a.setAttribute('hidden', "true")
+    function isVisible(a, b) {
+        if (b == "true") {
+            a.classList.add('visible')
+            a.setAttribute('hidden', "false")
+        } else {
+            a.classList.remove('visible')
+            a.setAttribute('hidden', "true")
+        }
     }
-}
 
-[modifyButton, closeModify].forEach(item => {
-    item.addEventListener('click', event => {
-        let a = modifyChoice
-        let b = a.getAttribute('hidden')
+    for (let i = 0; i<modifyButton.length; i++){
+        [modifyButton[i], closeModify[i], validateChoiceButton[i]].forEach(item => {
+            item.addEventListener('click', event => {
+                let a = modifyChoice[i]
+                let b = a.getAttribute('hidden')
+    
+                isVisible(a, b)
 
-        isVisible(a, b)
+                validateChoiceValue[i].value = ""
+    
+            })
+        })
+    }
+
+    document.addEventListener('DOMContentLoaded', (event) => {
+        let deleteButton = document.querySelectorAll('p.delete');
+
+        deleteButton.forEach(item => {
+            item.addEventListener('click', event => {
+                let itemIndex = item.getAttribute("data-index")
+                orderArray.splice(itemIndex, 1);
+                localStorage.setItem('orinoco', JSON.stringify(orderArray))
+
+                document.location.reload();
+            })
+        })
     })
-})
 
+    document.querySelector('.clear.baksetButton').addEventListener('click', function () {
+        localStorage.removeItem('orinoco')
+        document.location.reload();
+    })
 
-
-document.querySelector('.clear.baksetButton').addEventListener('click', function () {
+} else {
     localStorage.removeItem('orinoco')
-
-    document.location.reload();
-})
+    document.querySelector('#basket').innerHTML = `<h1>Panier</h1><p>Votre panier est vide</p>`
+    document.querySelector('.basket .total').classList.remove('isFilled')
+}

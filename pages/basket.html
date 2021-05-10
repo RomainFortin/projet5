@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Orinoco | Site de vente en ligne">
     <title>Orinoco</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"
         integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w=="
@@ -14,11 +15,11 @@
 
 <body>
     <header>
-        <a id="logo" href="/">
+        <a id="logo" href="/" name="Home" Title="Accueil">
             <img src="/assets/logo.png" alt="">
         </a>
         <nav>
-            <a href="/panier" class="panier">
+            <a href="/basket" class="basket">
                 <div class="total"></div>
                 <i class="fas fa-shopping-basket"></i>
                 Panier
@@ -72,13 +73,13 @@
             </div>
         </div>
         <div class="social">
-            <a href="/">
+            <a href="/" name="Facebook" title="Facebook">
                 <i class="fab fa-facebook-square"></i>
             </a>
-            <a href="/">
+            <a href="/" name="Twitter" title="Twitter">
                 <i class="fab fa-twitter-square"></i>
             </a>
-            <a href="/">
+            <a href="/" name="Instagram" title="Instagram">
                 <i class="fab fa-instagram-square"></i>
             </a>
         </div>
@@ -86,7 +87,7 @@
     </footer>
 
     <script src="/js/header.js"></script>
-    <script type="module" src="/js/panier.js"></script>
+    <script type="module" src="/js/basket.js"></script>
 </body>
 
 </html>

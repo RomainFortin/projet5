@@ -1,16 +1,16 @@
 export class order {
-    constructor(choiceValue, amountValue, produit, produitUrl) {
+    constructor(choiceValue, amountValue, product, productUrl) {
         this.choiceValue = choiceValue
         this.amountValue = amountValue
-        this.produit = produit
-        this.placeUrl = produitUrl
+        this.product = product
+        this.placeUrl = productUrl
         this.order = [{
-            name: produit.name,
-            imageUrl: produit.imageUrl,
-            description: produit.description,
-            id: produit._id,
-            price: produit.price,
-            url: produitUrl,
+            name: product.name,
+            imageUrl: product.imageUrl,
+            description: product.description,
+            id: product._id,
+            price: product.price,
+            url: productUrl,
             choice: this.choiceValue,
             amount: this.amountValue
         }]
