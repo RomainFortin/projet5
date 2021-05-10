@@ -46,7 +46,7 @@ const showProduct = async () => {
         <div class='container'>
             <div class='product'>
                 <picture>
-                    <img src='${product.imageUrl}' alt=''>
+                    <img src='${product.imageUrl}' alt='${product.name}' title='${product.name}'>
                 </picture>
                 <div class="side">
                     <div class="sideHeader">

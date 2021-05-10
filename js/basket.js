@@ -16,7 +16,7 @@ function injectTemplate(product, choice, api) {
         `
         <div class="product-order">
         <picture>
-            <img src="${product.imageUrl}" alt="">
+            <img src="${product.imageUrl}" alt="${product.name}" title="${product.name}">
         </picture>
         <div class="side">
             <div class="product-header">

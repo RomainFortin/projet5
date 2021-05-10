@@ -16,7 +16,7 @@ function productTemplate(name, product) {
         document.querySelector('.' + name + '').innerHTML += (
             `
                 <div class='article'>
-                <img src='${product[i].imageUrl}' alt=''>
+                <img src='${product[i].imageUrl}' alt='${product[i].name}' title="${product[i].name}">
                     <div class='title'>
                         <h3 class='name'>${product[i].name}</h3>
                         <p class='price'>${product[i].price/100} €</p>
