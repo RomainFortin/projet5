@@ -43,36 +43,6 @@ main#home{
             height: 40px;
         }
 
-
-        button {
-            margin-top: 20px;
-            width: 100%;
-
-            a {
-                @include displayFlex(row, center, center);
-                position: relative;
-                text-decoration: none;
-                width: 100%;
-                color: #fff;
-                padding: 15px;
-
-                &:after {
-                    @include transition;
-                    @include font(14px, 700);
-                    opacity: 0;
-                    content: "\f05a";
-                    position: absolute;
-                    color: #fff;
-                    transform: translateX(-20px);
-                }
-
-                &:hover:after {
-                    transform: translateX(-35px);
-                    opacity: 1;
-                }
-            }
-        }
-
         &:hover {
             box-shadow: 0 0 8px 3px #d1d1d1;
             transform: scale(1.01);

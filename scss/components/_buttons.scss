@@ -7,22 +7,35 @@ button {
     color: #fff;
     height: 40px;
     cursor: pointer;
+    &.details {
+        margin-top: 20px;
+        width: 100%;
+    
+        a {
+            @include displayFlex(row, center, center);
+            position: relative;
+            text-decoration: none;
+            width: 100%;
+            color: #fff;
+            padding: 15px;
+    
+            &:before {
+                @include font(14px, 700);
+                content: "\f05a";
+                color: #fff;
+                transform: translateX(-5px);
+            }
+        }
+    }
+
     &.order{
         width: 200px;
     
-            &:after {
-                @include transition;
+            &:before {
                 @include font(14px, 700);
-                opacity: 0;
                 content: "\f218";
-                position: absolute;
                 color: #fff;
-                transform: translateX(40px);
-            }
-    
-            &:hover:after {
-                transform: translateX(55px);
-                opacity: 1;
+                transform: translateX(-5px);
             }
     
             &[disabled]{
@@ -48,6 +61,7 @@ button {
         background-color: $red;
     }
     &.validate {
+        width: 190px;
         a {
             @include displayFlex(row, center , center);
             height: 100%;
@@ -57,7 +71,7 @@ button {
         }
         background-color: $green;
     }
-    &:after, & a:after{
+    &:after, & a:after, &:before, & a:before{
         font: {
             family:"Font Awesome 5 Free";
         }

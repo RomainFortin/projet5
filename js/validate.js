@@ -1,26 +1,107 @@
+if (localStorage.length != 0) {
+    var productArray = JSON.parse(localStorage.getItem('orinoco'))
+}
+
+
+var dataTeddies = {
+    "contact": {
+        "firstName": "string",
+        "lastName": "string",
+        "address": "string",
+        "city": "string",
+        "email": "string"
+    },
+    "products": []
+}
+
+var dataCameras = {
+    "contact": {
+        "firstName": "string",
+        "lastName": "string",
+        "address": "string",
+        "city": "string",
+        "email": "string"
+    },
+    "products": []
+}
+
+var dataFurniture = {
+    "contact": {
+        "firstName": "string",
+        "lastName": "string",
+        "address": "string",
+        "city": "string",
+        "email": "string"
+    },
+    "products": []
+}
+
+if (productArray && productArray.length > 0) {
+    for (let i = 0; i < productArray.length; i++) {
+        if (productArray[i].url.includes('teddies')) {
+            dataTeddies.products.push(productArray[i])
+            
+        } else if (productArray[i].url.includes('cameras')) {
+            dataCameras.products.push(productArray[i])
+            
+        } else if (productArray[i].url.includes('furniture')) {
+            dataFurniture.products.push(productArray[i])
+            
+        }
+    }
+    
+}
+
+
 document.querySelector('button').addEventListener('click', function () {
 
-    var userData = {
-        contact: {
-            firstName: 'string',
-            lastName: 'string',
-            address: 'string',
-            city: 'string',
-            email: 'string'
-        },
-        products: JSON.parse(localStorage.getItem('orinoco'))
+    document.querySelector('form').addEventListener("submit", function(e){
+        e.preventDefault()
+        document.querySelector('.modal').classList.add('isValid')
+    });
+
+    if (dataTeddies.products.length) {
+        console.log(dataTeddies.products);
+        fetch('http://localhost:3000/api/teddies/order', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify(dataTeddies)
+        }).then(response => response.json()) 
+        .then(json => document.querySelector('.modal_inner .teddies').innerHTML += `<p>${json.orderId}</p>` );
+    } 
+    if (dataCameras.products.length) {
+        console.log(dataCameras.products);
+        fetch('http://localhost:3000/api/cameras/order', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify(dataCameras)
+        }).then(response => response.json()) 
+        .then(json => document.querySelector('.modal_inner .cameras').innerHTML += `<p>${json.orderId}</p>` );
+    } 
+     if (dataFurniture.products.length) {
+        console.log(dataFurniture.products);
+        fetch('http://localhost:3000/api/furniture/order', {
+            method: 'POST',
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+            body: JSON.stringify(dataFurniture)
+        }).then(response => response.json()) 
+        .then(json => document.querySelector('.modal_inner .furniture').innerHTML += `<p>${json.orderId}</p>` );
     }
 
-
-    fetch('http://localhost:3000/api/teddies/order', {
-            method: 'POST',
-            body: userData
-        }).then(window.location = "/order")
-        .catch((error) => {
-            console.log(error);
-        })
 })
 
+document.querySelector('.closeModal').addEventListener('click', function(){
+    localStorage.removeItem('orinoco')
+})
 
 let section = document.querySelector('main .container .orderSummary');
 

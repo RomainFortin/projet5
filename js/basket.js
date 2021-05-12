@@ -21,7 +21,7 @@ function injectTemplate(product, choice, api) {
         <div class="side">
             <div class="product-header">
                     <h3 class='name'>
-                        <a href="/product?api=${api}&id=${product.id}">${product.name}</a>
+                        <a href="/product?api=${api}&id=${product._id}">${product.name}</a>
                     </h3>
                 <p class='delete' data-index="${orderIndex}"><i class="far fa-times-circle"></i>Supprimer</p>
             </div>

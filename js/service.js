@@ -8,7 +8,7 @@ export class order {
             name: product.name,
             imageUrl: product.imageUrl,
             description: product.description,
-            id: product._id,
+            _id: product._id,
             price: product.price,
             url: productUrl,
             choice: this.choiceValue,

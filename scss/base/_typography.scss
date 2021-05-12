@@ -24,6 +24,10 @@ h3 {
     @include font(14px, 700);
     color: $darkGrey;
 }
+h4 {
+    @include font(14px, 700);
+    color: $darkGrey;
+}
 
 
 label {

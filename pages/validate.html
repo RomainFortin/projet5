@@ -34,7 +34,7 @@
                 <h2>Récapitulatif</h2>
             </div>
             <p class="totalPrice">Total: <span></span></p>
-            <form action="/success" method="">
+            <form action="">
                 <label for="firstName">Prénom</label>
                 <input type="text" id="firstName" placeholder="Prénom" required>
                 <label for="lastName">Nom</label>
@@ -47,10 +47,27 @@
                 <input type="text" id="city" placeholder="Ville" required>
                 <label for="email">Email</label>
                 <input type="email" id="email" placeholder="Email" required>
-                <button type="">Valider</button>
+                <button type="submit">Commander</button>
             </form>
         </div>
-
+        <div class="modal">
+            <div class="modal_inner">
+                <h3>Votre commande est validée</h3>
+                <p>Numéros de commande:</p>
+                <div class="teddies">
+                    <h4>Oursons</h4>
+                </div>
+                <div class="cameras">
+                    <h4>Cameras</h4>
+                </div>
+                <div class="furniture">
+                    <h4>Meubles</h4>
+                </div>
+                <button>
+                    <a class="closeModal" href="/">Fermer</a>
+                </button>
+            </div>
+        </div>
     </main>
 
     <footer>

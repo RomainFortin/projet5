@@ -73,7 +73,7 @@ const showProduct = async () => {
                         </label>
                     </div>
                     <button disabled class="order">
-                        Commander
+                        Ajouter au panier
                     </button>
                 </div>
             </div>

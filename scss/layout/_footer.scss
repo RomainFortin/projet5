@@ -32,7 +32,11 @@ footer {
             text-decoration: none;
             i {
                 @include font(35px, 500);
+                @include transition;
                 color: $darkPurple;
+                &:hover {
+                    transform: scale(1.2);
+                }
             }
         }
     }
