@@ -2,61 +2,53 @@ nav {
     @include displayFlex(false, false, false);
 
     &>* {
-        @include displayFlex(row, false, center);
         color: $darkGrey;
         margin: 0 25px;
     }
 
-    i {
-        @include font(20px, 700);
-        margin-right: 10px;
-    }
-
-    a {
+    div.basket {
+        @include displayFlex(row, center, baseline);
+        @include font(14px, 600);
+        @include transition;
+        cursor: pointer;
         position: relative;
         text-decoration: none;
-        padding: 10px 0;
-
-        font: {
-            size: 16px;
-            weight: 600;
-        }
-
-        &:after {
-            @include transition;
-            position: absolute;
-            left: 0;
-            bottom: 0;
-            content: "";
-            width: 0;
-            height: 2px;
-            background-color: $darkGrey;
-        }
-
-        &:hover:after {
-            width: 100%;
-        }
-    }
-
-    .basket {
-        position: relative;
+        padding: 20px;
+        border: solid 1px transparent;
+        border-radius: 5px;
 
         .total {
             @include displayFlex(false, center, center);
             @include font(12px, 700);
             position: absolute;
-            top: 0;
-            left: -10px;
-            width: 20px;
-            height: 20px;
+            top: 8px;
+            left: 8px;
+            width: 18px;
+            height: 18px;
             background-color: red;
             transform: scale(0);
             border-radius: 50%;
             color: #fff;
+
             &.isFilled {
                 transform: scale(1);
             }
         }
-        
+
+        i {
+            @include font(16px, 700);
+            margin-right: 10px;
+
+            &.toggleBasket {
+                position: absolute;
+                @include font(20px, 600);
+                bottom: 0;
+            }
+        }
+
+        &:hover {
+            border: solid 1px $darkPurple;
+            box-shadow: 0 0 8px 3px #d1d1d1;
+        }
     }
 }

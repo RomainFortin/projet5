@@ -2,6 +2,10 @@ const teddiesUrl = "http://localhost:3000/api/teddies";
 const camerasUrl = "http://localhost:3000/api/cameras";
 const furnituresUrl = "http://localhost:3000/api/furniture";
 
+localStorage.removeItem('orderCameras')
+localStorage.removeItem('orderTeddies')
+localStorage.removeItem('orderFurniture')
+
 const fetchApi = async () => {
     teddies = await fetch(teddiesUrl).then(res => res.json()).catch(error => console.log(error))
     cameras = await fetch(camerasUrl).then(res => res.json()).catch(error => console.log(error))
@@ -13,7 +17,7 @@ function productTemplate(name, product) {
 
     function insertTemplate(i) {
 
-        document.querySelector('.' + name + '').innerHTML += (
+        document.querySelector('#home '+'.' + name + '').innerHTML += (
             `
                 <div class='article'>
                 <img src='${product[i].imageUrl}' alt='${product[i].name}' title="${product[i].name}">
@@ -61,3 +65,7 @@ const showProducts = async () => {
 }
 
 showProducts()
+
+localStorage.removeItem('orderTeddies')
+localStorage.removeItem('orderCameras')
+localStorage.removeItem('orderFurniture')

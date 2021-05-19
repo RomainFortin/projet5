@@ -29,4 +29,6 @@ router.get('/success', function (req, res) {
   });
 });
 
+router.post('/success');
+
 module.exports = router;

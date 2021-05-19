@@ -1,0 +1,9 @@
+.container.validated {
+    p{
+        margin-top: 10px;
+        span {
+            @include font(14px, 700);
+            margin: 0 3px;
+        }
+    }
+}

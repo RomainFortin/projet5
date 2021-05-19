@@ -19,17 +19,35 @@
             <img src="/assets/logo.png" alt="Logo" title="Logo">
         </a>
         <nav>
-            <a href="/basket" class="basket" aria-label="Panier">
+            <div class="basket" aria-label="Panier">
                 <div class="total"></div>
                 <i class="fas fa-shopping-basket"></i>
                 Panier
-            </a>
+                <i class="toggleBasket fas fa-angle-down"></i>
+                <div class="basketModal">
+                    <div class="basketModalWrapper">
+                        <div class="basketModalInner oursons">
+                            <h3>Oursons</h3>
+                        </div>
+                        <div class="basketModalInner cameras">
+                            <h3>Cameras</h3>
+                        </div>
+                        <div class="basketModalInner furniture">
+                            <h3>Meubles</h3>
+                        </div>
+                    </div>
+                    <div class="basketModalSum">
+                        <p class="price priceModal"></p>
+                        <button><a href="/basket">Panier</a></button>
+                    </div>
+                </div>
+            </div>
         </nav>
     </header>
 
     <main id="success">
-        <div class="container">
-            <h3>Commande passée</h3>
+        <div class="container validated">
+            <h2>Félicitations</h2>
         </div>
     </main>
 
@@ -75,7 +93,8 @@
     </footer>
 
     <script src="/js/header.js"></script>
-    <script src="/js/validate.js"></script>
+    <script src="/js/success.js"></script>
+
 </body>
 
 </html>

@@ -1,41 +1,83 @@
-.modal {
-    display: none;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: #323232d3;    
-    
-    .modal_inner {
-        @include displayFlex(column, flex-start, center);
-        background-color: #fff;
-        border-radius: 5px;
-        padding: 20px;
+.basketModal {
+    @include transition;
+    transform-origin: top;
+    position: absolute;
+    cursor: default;
+    transform: scaleY(0);
+    z-index: 5000;
+    top: calc(100% + 10px);
+    box-shadow: 0 0 8px 3px #d1d1d1;
+    background-color: #fff;
+    border-radius: 5px;
+    padding: 20px;
+    .basketModalInner {
+        margin-bottom: 20px;
+        h3 {
+            margin-bottom: 5px;
+        }
     }
-
-    &.isValid {
-        animation: animModal 0.3s;
-        @include displayFlex(row, center, flex-start);
-        .modal_inner {
-            animation: animModalInner 0.3s 0.2s backwards;
+    .basketModalOrder {
+        @include displayFlex(row, false, flex-start);
+        margin-bottom: 5px;
+        img {
+            width: 80px;
+            height: auto;
+        }
+        .side {
+            @include displayFlex(column, space-between, flex-start);
+            min-width: 180px;
+            margin-left: 10px;
+            width: 100%;
+            i {
+                margin-right: 0;
+                margin-left: 20px;
+            }
+            .basketModalHeader {
+                @include displayFlex(row, space-between, flex-start);
+                width: 100%;
+                h4 {
+                    a{
+                        color: $blue;
+                        white-space: nowrap;
+                    }
+                }
+            }
+            .basketModalFooter{
+                @include displayFlex(column, false, flex-start);
+                position: relative;
+                width: 100%;
+                .choice {
+                    @include displayFlex(row, false, false);
+                }
+                p {
+                    @include font(12px, 500);
+                }
+                .basketModalTotal {
+                    position: absolute;
+                    bottom: 0;
+                    right: 0;
+                    p {
+                        @include font(12px, 700);
+                    }
+                }
+            }
+        }
+    }
+    .basketModalSum {
+        @include displayFlex(row, space-between, flex-end);
+        width: 100%;
+        margin-top: 30px;
+        button {
+            width: 100px;
+            a {
+                @include displayFlex(row, center, center);
+                height: 100%;
+                width: 100%;
+            }
         }
     }
 }
 
-@keyframes animModal {
-    0% {
-        opacity: 0;
-    }
-    100% {
-        opacity: 1;
-    }
-}
-@keyframes animModalInner {
-    0% {
-        transform: translateY(-100%);
-    }
-    100% {
-        transform: translateY(0);
-    }
+.basketModalIsOpen {
+    transform: scaleY(1);
 }

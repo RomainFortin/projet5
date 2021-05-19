@@ -32,7 +32,7 @@ export class order {
         let currentOrder = JSON.parse(localStorage.getItem('orinoco'))
         let indexValue = currentOrder.findIndex(e => e.choice === this.choiceValue)
 
-        currentOrder[indexValue].amount+=this.amountValue
+        currentOrder[indexValue].amount=this.amountValue
 
         localStorage.setItem('orinoco', JSON.stringify(currentOrder))
     }

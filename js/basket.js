@@ -1,3 +1,8 @@
+import {
+    order
+} from './service.js';
+
+
 if (localStorage.length != 0) {
     var orderArray = JSON.parse(localStorage.getItem('orinoco'))
 }
@@ -35,17 +40,24 @@ function injectTemplate(product, choice, api) {
                     <p class="choiceTitle">Quantité:</p>
                     <p class="choice-value">${product.amount}</p>
                     <div class="modify">
-                        <button class="modify">Modifier</button>
-                        <div class="modifyChoice" hidden="true">
+                        <button class="modify" data-index="${orderIndex}">Modifier</button>
+                        <div class="modifyChoice" data-hidden="true">
                             <i class="closeModify fas fa-times"></i>
                             <p>Quantité désirée:</p>
-                            <input type="text">
+                            <select name="choice">
+                                <option value="" disabled selected value>Choisissez une quantité</option>
+                                <option value="1">1</option>
+                                <option value="2">2</option>
+                                <option value="3">3</option>
+                                <option value="4">4</option>
+                                <option value="5">5</option>
+                            </select>
                             <button class="details">Valider</button>
                         </div>
                     </div>
                 </div>
                 <div class="total">
-                    <p class='totalValue'>${product.price/100} €</p>
+                    <p class='totalValue'>${product.price/100*product.amount} €</p>
                 </div>
             </div>
         </div>
@@ -71,7 +83,7 @@ if (orderArray && orderArray.length > 0) {
             section = document.querySelector('main .container' + '.furniture' + '');
             injectTemplate(orderProduct[i], "Vernis", "furniture")
         }
-        price.push(orderProduct[i].price / 100)
+        price.push(orderProduct[i].price / 100*orderProduct[i].amount)
         const reducer = (accumulator, currentValue) => accumulator + currentValue;
         document.querySelector('.totalPrice span').innerHTML = price.reduce(reducer) + ' €'
     }
@@ -79,16 +91,16 @@ if (orderArray && orderArray.length > 0) {
     let modifyButton = document.querySelectorAll('button.modify')
     let modifyChoice = document.querySelectorAll('.modifyChoice')
     let closeModify = document.querySelectorAll('.closeModify');
-    let validateChoiceValue = document.querySelectorAll('.modifyChoice input');
+    let validateChoiceValue = document.querySelectorAll('.modifyChoice select');
     let validateChoiceButton = document.querySelectorAll('.modifyChoice button');
 
     function isVisible(a, b) {
         if (b == "true") {
             a.classList.add('visible')
-            a.setAttribute('hidden', "false")
+            a.setAttribute('data-hidden', "false")
         } else {
             a.classList.remove('visible')
-            a.setAttribute('hidden', "true")
+            a.setAttribute('data-hidden', "true")
         }
     }
 
@@ -96,13 +108,16 @@ if (orderArray && orderArray.length > 0) {
         [modifyButton[i], closeModify[i], validateChoiceButton[i]].forEach(item => {
             item.addEventListener('click', event => {
                 let a = modifyChoice[i]
-                let b = a.getAttribute('hidden')
+                let b = a.getAttribute('data-hidden')
     
                 isVisible(a, b)
-
-                validateChoiceValue[i].value = ""
-    
+              
             })
+            validateChoiceButton[i].addEventListener('click', function(){
+                new order(orderProduct[i].choice, parseInt(validateChoiceValue[i].value), orderProduct[i], orderProduct[i].url).modifyOrder()
+                document.location.reload();
+            })
+            
         })
     }
 

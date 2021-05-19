@@ -16,57 +16,68 @@
 <body>
     <header>
         <a id="logo" href="/" name="Home" Title="Accueil">
-            <img src="/assets/logo.png" alt="">
+            <img src="/assets/logo.png" alt="Logo" title="Logo">
         </a>
         <nav>
-            <a href="/basket" class="basket" aria-label="Panier">
+            <div class="basket" aria-label="Panier">
                 <div class="total"></div>
                 <i class="fas fa-shopping-basket"></i>
                 Panier
-            </a>
+                <i class="toggleBasket fas fa-angle-down"></i>
+                <div class="basketModal" data-hidden="true">
+                    <div class="basketModalWrapper">
+                        <div class="basketModalInner oursons">
+                            <h3>Oursons</h3>
+                        </div>
+                        <div class="basketModalInner cameras">
+                            <h3>Cameras</h3>
+                        </div>
+                        <div class="basketModalInner furniture">
+                            <h3>Meubles</h3>
+                        </div>
+                    </div>
+                    <div class="basketModalSum">
+                        <p class="price priceModal"></p>
+                        <button><a href="/basket">Panier</a></button>
+                    </div>
+                </div>
+            </div>
         </nav>
     </header>
 
     <main id="basket">
         <h1>Validation</h1>
         <div class="container">
-            <div class="orderSummary">
-                <h2>Récapitulatif</h2>
-            </div>
-            <p class="totalPrice">Total: <span></span></p>
-            <form action="">
-                <label for="firstName">Prénom</label>
-                <input type="text" id="firstName" placeholder="Prénom" required>
-                <label for="lastName">Nom</label>
-                <input type="text" id="lastName" placeholder="Nom" required>
-                <label for="address">Adresse</label>
-                <input type="text" id="address" placeholder="Adresse" required>
-                <label for="postalCode">Code postal</label>
-                <input type="text" id="postalCode" placeholder="Code postal" required>
-                <label for="city">Ville</label>
-                <input type="text" id="city" placeholder="Ville" required>
-                <label for="email">Email</label>
-                <input type="email" id="email" placeholder="Email" required>
-                <button type="submit">Commander</button>
+            <form>
+                <div>
+                    <label for="firstName">Prénom</label>
+                    <input type="text" name="firstName" id="firstName" placeholder="Prénom" required>
+                </div>
+                <div>
+                    <label for="lastName">Nom</label>
+                    <input type="text" name="lastName" id="lastName" placeholder="Nom" required>
+                </div>
+                <div>
+                    <label for="address">Adresse</label>
+                    <input type="text" name="address" id="address" placeholder="Adresse" required >
+                </div>
+                <div>
+                    <label for="postalCode">Code postal</label>
+                    <input type="text" name="postalCode" id="postalCode" placeholder="Code postal" required>
+                </div>
+                <div>
+                    <label for="city">Ville</label>
+                    <input type="text" name="city" id="city" placeholder="Ville" required>
+                </div>
+                <div>
+                    <label for="email">Email</label>
+                    <input type="email" name="email" id="email" placeholder="Email" required>
+                </div>
+                <div>
+                    <button class="validateButton">Commander</button>
+                </div>
             </form>
-        </div>
-        <div class="modal">
-            <div class="modal_inner">
-                <h3>Votre commande est validée</h3>
-                <p>Numéros de commande:</p>
-                <div class="teddies">
-                    <h4>Oursons</h4>
-                </div>
-                <div class="cameras">
-                    <h4>Cameras</h4>
-                </div>
-                <div class="furniture">
-                    <h4>Meubles</h4>
-                </div>
-                <button>
-                    <a class="closeModal" href="/">Fermer</a>
-                </button>
-            </div>
+
         </div>
     </main>
 
