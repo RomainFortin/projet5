@@ -1,10 +1,48 @@
-form{
+form {
     @include displayFlex(column, false, flex-start);
+    flex-wrap: wrap;
     position: relative;
-}
-input {
-    border-style:solid;
-    @include font(12px, 500);
-    border-radius: 5px;
-    padding: 5px;
+
+    div {
+        @include displayFlex(row, false, center);
+        flex-wrap: wrap;
+
+        div {
+            @include displayFlex(column, false, flex-start);
+            padding: 20px;
+
+            label {
+                width: 80px;
+                margin-bottom: 5px;
+                position: relative;
+            }
+
+            input {
+                @include font(12px, 500);
+                border-style: solid;
+                width: 200px;
+                border-radius: 5px;
+                padding: 5px;
+            }
+        }
+
+        &.confirm {
+            @include displayFlex(row, space-between, false);
+            width: 100%;
+            padding: 20px;
+
+            p.totalPrice {
+                @include displayFlex(row, flex-start, center);
+                flex: 1;
+                @include font(14px, 700);
+
+                span {
+                    border: solid 2px $blue;
+                    border-radius: 5px;
+                    margin-left: 15px;
+                    padding: 5px 15px;
+                }
+            }
+        }
+    }
 }

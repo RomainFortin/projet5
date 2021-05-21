@@ -57,9 +57,49 @@
             <h2>Meubles</h2>
         </div>
         <div class="basket_bottom">
-            <p class="totalPrice">Total: <span></span></p>
-            <button class="clear baksetButton"><i class="fas fa-times"></i>Vider le panier</button>
-            <button class="validate baksetButton"><a href="/validate"><i class="fas fa-check"></i>Valider votre panier</a></button>
+            <h1>Validation</h1>
+            <div class="container">
+                <form>
+                    <div>
+                        <div>
+                            <label for="firstName">Prénom</label>
+                            <input type="text" name="firstName" id="firstName" placeholder="Prénom" required>
+                        </div>
+                        <div>
+                            <label for="lastName">Nom</label>
+                            <input type="text" name="lastName" id="lastName" placeholder="Nom" required>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label for="address">Adresse</label>
+                            <input type="text" name="address" id="address" placeholder="Adresse" required>
+                        </div>
+                        <div>
+                            <label for="postalCode">Code postal</label>
+                            <input type="text" name="postalCode" id="postalCode" placeholder="Code postal" required>
+                        </div>
+                        <div>
+                            <label for="city">Ville</label>
+                            <input type="text" name="city" id="city" placeholder="Ville" required>
+                        </div>
+                    </div>
+                    <div>
+                        <div>
+                            <label for="email">Email</label>
+                            <input type="email" name="email" id="email" placeholder="Email" required>
+                        </div>
+                    </div>
+                    <div class="confirm">
+                        <p class="totalPrice">Total: <span></span></p>
+                        <button class="clear baksetButton"><i class="fas fa-times"></i>Vider le panier</button>
+                        <button type="submit" class="validate baksetButton"><i class="fas fa-check"></i>Valider votre
+                            panier</button>
+                    </div>
+                </form>
+
+            </div>
+
         </div>
     </main>
 

@@ -158,20 +158,16 @@
 }
 
 .basket_bottom {
-    @include displayFlex(row, flex-end, center);
+    @include displayFlex(column, false, flex-start);
     margin-bottom: 50px;
-    .totalPrice {
-        @include displayFlex(row, space-between, center);
-        @include font(14px, 700);
-        margin-right: 50px;
-        span {
-            border: solid 2px $blue;
-            border-radius: 5px;
-            margin-left: 15px;
-            padding: 5px 15px;
+    h1 {
+        margin: 0;
+    }
+    .container {
+        width: 100%;
+        button {
+            margin-left: 20px;
         }
     }
-    button {
-        margin-left: 20px;
-    }
+    
 }

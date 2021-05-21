@@ -83,7 +83,7 @@ if (orderArray && orderArray.length > 0) {
             section = document.querySelector('main .container' + '.furniture' + '');
             injectTemplate(orderProduct[i], "Vernis", "furniture")
         }
-        price.push(orderProduct[i].price / 100*orderProduct[i].amount)
+        price.push(orderProduct[i].price / 100 * orderProduct[i].amount)
         const reducer = (accumulator, currentValue) => accumulator + currentValue;
         document.querySelector('.totalPrice span').innerHTML = price.reduce(reducer) + ' €'
     }
@@ -104,20 +104,20 @@ if (orderArray && orderArray.length > 0) {
         }
     }
 
-    for (let i = 0; i<modifyButton.length; i++){
+    for (let i = 0; i < modifyButton.length; i++) {
         [modifyButton[i], closeModify[i], validateChoiceButton[i]].forEach(item => {
             item.addEventListener('click', event => {
                 let a = modifyChoice[i]
                 let b = a.getAttribute('data-hidden')
-    
+
                 isVisible(a, b)
-              
+
             })
-            validateChoiceButton[i].addEventListener('click', function(){
+            validateChoiceButton[i].addEventListener('click', function () {
                 new order(orderProduct[i].choice, parseInt(validateChoiceValue[i].value), orderProduct[i], orderProduct[i].url).modifyOrder()
                 document.location.reload();
             })
-            
+
         })
     }
 
@@ -135,6 +135,11 @@ if (orderArray && orderArray.length > 0) {
         })
     })
 
+
+
+
+
+
     document.querySelector('.clear.baksetButton').addEventListener('click', function () {
         localStorage.removeItem('orinoco')
         document.location.reload();
@@ -145,3 +150,117 @@ if (orderArray && orderArray.length > 0) {
     document.querySelector('#basket').innerHTML = `<h1>Panier</h1><p>Votre panier est vide</p>`
     document.querySelector('.basket .total').classList.remove('isFilled')
 }
+
+const orderValidate = async () => {
+    var dataTeddies = {
+        "contact": {
+            "firstName": document.querySelector('input#firstName').value,
+            "lastName": document.querySelector('input#lastName').value,
+            "address": document.querySelector('input#address').value,
+            "postalCode": document.querySelector('input#postalCode').value,
+            "city": document.querySelector('input#city').value,
+            "email": document.querySelector('input#email').value
+        },
+        "products": []
+    }
+
+
+    var dataCameras = {
+        "contact": {
+            "firstName": document.querySelector('input#firstName').value,
+            "lastName": document.querySelector('input#lastName').value,
+            "address": document.querySelector('input#address').value,
+            "postalCode": document.querySelector('input#postalCode').value,
+            "city": document.querySelector('input#city').value,
+            "email": document.querySelector('input#email').value
+        },
+        "products": []
+    }
+
+    var dataFurniture = {
+        "contact": {
+            "firstName": document.querySelector('input#firstName').value,
+            "lastName": document.querySelector('input#lastName').value,
+            "address": document.querySelector('input#address').value,
+            "postalCode": document.querySelector('input#postalCode').value,
+            "city": document.querySelector('input#city').value,
+            "email": document.querySelector('input#email').value
+        },
+        "products": []
+    }
+
+    if (orderArray && orderArray.length > 0) {
+        for (let i = 0; i < orderArray.length; i++) {
+            if (orderArray[i].url.includes('teddies')) {
+                dataTeddies.products.push(orderArray[i])
+
+            } else if (orderArray[i].url.includes('cameras')) {
+                dataCameras.products.push(orderArray[i])
+
+            } else if (orderArray[i].url.includes('furniture')) {
+                dataFurniture.products.push(orderArray[i])
+
+            }
+        }
+
+    }
+
+    if (dataTeddies.products.length) {
+        fetch('http://localhost:3000/api/teddies/order', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dataTeddies)
+            }).then(function (response) {
+                return response.json();
+            })
+            .then(function (json) {
+                localStorage.setItem('orderTeddies', JSON.stringify(json))
+                document.location.href = "/success"
+            })
+
+    }
+    if (dataCameras.products.length) {
+        fetch('http://localhost:3000/api/cameras/order', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dataCameras)
+            }).then(function (response) {
+                return response.json();
+            })
+            .then(function (json) {
+                localStorage.setItem('orderCameras', JSON.stringify(json))
+                document.location.href = "/success"
+            })
+    }
+    if (dataFurniture.products.length) {
+        fetch('http://localhost:3000/api/furniture/order', {
+                method: 'POST',
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dataFurniture)
+            }).then(function (response) {
+                return response.json();
+            })
+            .then(function (json) {
+                localStorage.setItem('orderFurniture', JSON.stringify(json))
+                document.location.href = "/success"
+            })
+    }
+}
+
+const validate = async () => {
+    await orderValidate()
+}
+
+document.querySelector('form').addEventListener("submit", function (e) {
+    e.preventDefault()
+    validate()
+});
