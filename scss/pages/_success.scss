@@ -1,9 +1,26 @@
-.container.validated {
-    p{
-        margin-top: 10px;
-        span {
-            @include font(14px, 700);
-            margin: 0 3px;
+main#success {
+    @include displayFlex(column, false, flex-end);
+    .container.validated {
+        width: 100%;
+        p {
+            margin-top: 10px;
+
+            span {
+                @include font(14px, 700);
+                margin: 0 3px;
+            }
+        }
+    }
+    button {
+        width: 180px;
+        margin-bottom: 50px;
+        a {
+            @include displayFlex(row, center, center);
+            height: 100%;
+            width: 100%;
+            i {
+                margin-right: 8px;
+            }
         }
     }
 }

@@ -6,49 +6,4 @@ nav {
         margin: 0 25px;
     }
 
-    div.basket {
-        @include displayFlex(row, center, baseline);
-        @include font(14px, 600);
-        @include transition;
-        cursor: pointer;
-        position: relative;
-        text-decoration: none;
-        padding: 20px;
-        border: solid 1px transparent;
-        border-radius: 5px;
-
-        .total {
-            @include displayFlex(false, center, center);
-            @include font(12px, 700);
-            position: absolute;
-            top: 8px;
-            left: 8px;
-            width: 18px;
-            height: 18px;
-            background-color: red;
-            transform: scale(0);
-            border-radius: 50%;
-            color: #fff;
-
-            &.isFilled {
-                transform: scale(1);
-            }
-        }
-
-        i {
-            @include font(16px, 700);
-            margin-right: 10px;
-
-            &.toggleBasket {
-                position: absolute;
-                @include font(20px, 600);
-                bottom: 0;
-            }
-        }
-
-        &:hover {
-            border: solid 1px $darkPurple;
-            box-shadow: 0 0 8px 3px #d1d1d1;
-        }
-    }
 }

@@ -1,10 +1,13 @@
 const totalBasket = document.querySelector('.basket .total');
+const toggleBasket = document.querySelector('.basket .toggleBasket');
 
 if (localStorage.getItem('orinoco') != null) {
     totalBasket.innerHTML = JSON.parse(localStorage.getItem('orinoco')).length;
     totalBasket.classList.add('isFilled')
+
 } else {
     totalBasket.classList.remove('isFilled')
+
 }
 
 if (localStorage.length != 0) {
@@ -15,14 +18,13 @@ let price = []
 
 let orderProduct = []
 
-let section;
-
-function injectTemplate(product, choice, api) {
+function injectTemplate(product, choice, api, title) {
 
     let orderIndex = orderArray.findIndex(e => e.choice === product.choice && e.name === product.name)
 
-    section.innerHTML += (
+    document.querySelector('.basketModalWrapper').innerHTML += (
         `
+        <h3>${title}</h3>
         <div class="basketModalOrder">
             <picture>
                 <img src="${product.imageUrl}" alt="${product.name}" title="${product.name}">
@@ -59,16 +61,13 @@ if (orderArray && orderArray.length > 0) {
     for (let i = 0; i < orderArray.length; i++) {
         if (orderArray[i].url.includes('teddies')) {
             orderProduct.push(orderArray[i])
-            section = document.querySelector('.basketModalInner' + '.oursons' + '');
-            injectTemplate(orderProduct[i], "Couleurs", "teddies")
+            injectTemplate(orderProduct[i], "Couleurs", "teddies", "Oursons")
         } else if (orderArray[i].url.includes('cameras')) {
             orderProduct.push(orderArray[i])
-            section = document.querySelector('.basketModalInner' + '.cameras' + '');
-            injectTemplate(orderProduct[i], "Objectifs", "cameras")
+            injectTemplate(orderProduct[i], "Objectifs", "cameras", "Cameras")
         } else if (orderArray[i].url.includes('furniture')) {
             orderProduct.push(orderArray[i])
-            section = document.querySelector('.basketModalInner' + '.furniture' + '');
-            injectTemplate(orderProduct[i], "Vernis", "furniture")
+            injectTemplate(orderProduct[i], "Vernis", "furniture", "Meubles")
         }
         price.push(orderProduct[i].price / 100 * orderProduct[i].amount)
         const reducer = (accumulator, currentValue) => accumulator + currentValue;
@@ -86,8 +85,9 @@ if (orderArray && orderArray.length > 0) {
             document.location.reload();
         })
     })
-}else {
+} else {
     localStorage.removeItem('orinoco')
+    document.querySelector('.basketModal').innerHTML = `<h3>Votre panier est vide</h3>`
     document.querySelector('.basket .total').classList.remove('isFilled')
 }
 
@@ -95,26 +95,33 @@ if (orderArray && orderArray.length > 0) {
 let basketButton = document.querySelector('.basket')
 let basketModal = document.querySelector('.basketModal');
 
-function isVisible(a, b) {
+function isVisible() {
+    let a = basketModal
+    let b = basketModal.getAttribute('data-hidden')
+
     if (b == "true") {
         a.classList.add('basketModalIsOpen')
+        toggleBasket.classList.add('isOpen')
         a.setAttribute('data-hidden', "false")
     } else {
         a.classList.remove('basketModalIsOpen')
+        toggleBasket.classList.remove('isOpen')
         a.setAttribute('data-hidden', "true")
     }
 }
 
-basketButton.addEventListener('click', function () {
-    basketModal.classList.add('basketModalIsOpen')
-
-    let a = basketModal
-    let b = a.getAttribute('data-hidden')
-
-    isVisible(a, b)
+basketButton.addEventListener('click', function (e) {
+    e.stopPropagation();
+    isVisible()
 
 })
 
-basketModal.addEventListener('click', function(e){
+basketModal.addEventListener('click', function (e) {
     e.stopPropagation();
+})
+
+document.addEventListener('click', function (e) {
+    basketModal.classList.remove('basketModalIsOpen')
+    toggleBasket.classList.remove('isOpen')
+    basketModal.setAttribute('data-hidden', "true")
 })

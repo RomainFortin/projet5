@@ -5,6 +5,7 @@ if (localStorage.length != 0) {
 }
 
 
+
 let validated = document.querySelector('.container.validated')
 
 
@@ -24,5 +25,11 @@ if (orderFurniture != null) {
     `
 }
 
+
+document.querySelector('button').addEventListener('click', function(){
+    localStorage.removeItem('orderTeddies')
+    localStorage.removeItem('orderCameras')
+    localStorage.removeItem('orderFurniture')
+})
 
 
