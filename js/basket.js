@@ -161,7 +161,7 @@ if (orderArray && orderArray.length > 0) {
 
 } else {
     localStorage.removeItem('orinoco')
-    document.querySelector('#basket').innerHTML = `<h1>Votre panier est vide</h1>`
+    document.querySelector('#basket').innerHTML = `<h1>Votre panier est vide</h1><button><a href="/"><i class="fas fa-home"></i>Retour à l'accueil</a></button>`
     document.querySelector('.basket .total').classList.remove('isFilled')
 }
 
@@ -173,7 +173,8 @@ const orderValidate = async () => {
             "address": document.querySelector('input#address').value,
             "postalCode": document.querySelector('input#postalCode').value,
             "city": document.querySelector('input#city').value,
-            "email": document.querySelector('input#email').value
+            "email": document.querySelector('input#email').value,
+            "price": document.querySelector('.totalPrice span').textContent
         },
         "products": []
     }
@@ -186,7 +187,8 @@ const orderValidate = async () => {
             "address": document.querySelector('input#address').value,
             "postalCode": document.querySelector('input#postalCode').value,
             "city": document.querySelector('input#city').value,
-            "email": document.querySelector('input#email').value
+            "email": document.querySelector('input#email').value,
+            "price": document.querySelector('.totalPrice span').textContent
         },
         "products": []
     }
@@ -198,7 +200,8 @@ const orderValidate = async () => {
             "address": document.querySelector('input#address').value,
             "postalCode": document.querySelector('input#postalCode').value,
             "city": document.querySelector('input#city').value,
-            "email": document.querySelector('input#email').value
+            "email": document.querySelector('input#email').value,
+            "price": document.querySelector('.totalPrice span').textContent
         },
         "products": []
     }
