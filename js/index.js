@@ -2,17 +2,20 @@ const teddiesUrl = "http://localhost:3000/api/teddies";
 const camerasUrl = "http://localhost:3000/api/cameras";
 const furnituresUrl = "http://localhost:3000/api/furniture";
 
+// vide les résultats de commande
 localStorage.removeItem('orderCameras')
 localStorage.removeItem('orderTeddies')
 localStorage.removeItem('orderFurniture')
+localStorage.removeItem('storeTotalPrice')
 
+// fetch des différentes APIS
 const fetchApi = async () => {
     teddies = await fetch(teddiesUrl).then(res => res.json()).catch(error => console.log(error))
     cameras = await fetch(camerasUrl).then(res => res.json()).catch(error => console.log(error))
     furnitures = await fetch(furnituresUrl).then(res => res.json()).catch(error => console.log(error))
 }
 
-
+// template de chaque carte de produit
 function productTemplate(name, product) {
 
     function insertTemplate(i) {
@@ -38,7 +41,7 @@ function productTemplate(name, product) {
     }
 }
 
-
+// affiche chaque produit dans son container approprié
 const showProducts = async () => {
     await fetchApi()
     
@@ -65,7 +68,3 @@ const showProducts = async () => {
 }
 
 showProducts()
-
-localStorage.removeItem('orderTeddies')
-localStorage.removeItem('orderCameras')
-localStorage.removeItem('orderFurniture')

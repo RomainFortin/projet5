@@ -1,13 +1,13 @@
 const totalBasket = document.querySelector('.basket .total');
 const toggleBasket = document.querySelector('.basket .toggleBasket');
 
+// affiche un info bulle de quantité 
 if (localStorage.getItem('orinoco') != null) {
     totalBasket.innerHTML = JSON.parse(localStorage.getItem('orinoco')).length;
     totalBasket.classList.add('isFilled')
 
 } else {
     totalBasket.classList.remove('isFilled')
-
 }
 
 if (localStorage.length != 0) {
@@ -18,6 +18,7 @@ let price = []
 
 let orderProduct = []
 
+// template du pop-up panier
 function injectTemplate(product, choice, api, title) {
 
     let orderIndex = orderArray.findIndex(e => e.choice === product.choice && e.name === product.name)
@@ -56,7 +57,7 @@ function injectTemplate(product, choice, api, title) {
 
 }
 
-
+// affiche le template en fonction de l'API
 if (orderArray && orderArray.length > 0) {
     for (let i = 0; i < orderArray.length; i++) {
         if (orderArray[i].url.includes('teddies')) {
@@ -91,10 +92,10 @@ if (orderArray && orderArray.length > 0) {
     document.querySelector('.basket .total').classList.remove('isFilled')
 }
 
-
 let basketButton = document.querySelector('.basket')
 let basketModal = document.querySelector('.basketModal');
 
+// fonction qui vérifie et affiche ou non la pop-up
 function isVisible() {
     let a = basketModal
     let b = basketModal.getAttribute('data-hidden')

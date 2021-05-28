@@ -2,7 +2,7 @@ import {
     order
 } from './service.js';
 
-
+// Vérifie l'existence de données dans le localStorage et si oui, définit la variable contenant les commandes 
 if (localStorage.length != 0) {
     var orderArray = JSON.parse(localStorage.getItem('orinoco'))
 }
@@ -11,6 +11,7 @@ let price = []
 
 let orderProduct = []
 
+// fonction injectant le template de chaque produit issu des APIS
 function injectTemplate(product, choice, api, title) {
 
     let orderIndex = orderArray.findIndex(e => e.choice === product.choice && e.name === product.name)
@@ -68,7 +69,7 @@ function injectTemplate(product, choice, api, title) {
 
 }
 
-
+// parcourt les différentes APIS et insere les données en fonction de ces dernières 
 if (orderArray && orderArray.length > 0) {
     for (let i = 0; i < orderArray.length; i++) {
         if (orderArray[i].url.includes('teddies')) {
@@ -85,7 +86,7 @@ if (orderArray && orderArray.length > 0) {
         } 
         price.push(orderProduct[i].price / 100 * orderProduct[i].amount)
         const reducer = (accumulator, currentValue) => accumulator + currentValue;
-        document.querySelector('.totalPrice span').innerHTML = price.reduce(reducer) + ' €'
+        document.querySelector('.totalPrice span').innerHTML = price.reduce(reducer) + ' €';
     }
 
     let modifyButton = document.querySelectorAll('button.modify')
@@ -94,6 +95,8 @@ if (orderArray && orderArray.length > 0) {
     let validateChoiceValue = document.querySelectorAll('.modifyChoice select');
     let validateChoiceButton = document.querySelectorAll('.modifyChoice button');
 
+
+    // fonction qui vérifie et affiche ou non les pop-up
     function isVisible(a, b) {
         if (b == "true") {
             a.classList.add('visible')
@@ -105,6 +108,7 @@ if (orderArray && orderArray.length > 0) {
         }
     }
 
+    // parcourt les boutons et appliques leur logique associée
     for (let i = 0; i < modifyButton.length; i++) {
         [modifyButton[i], closeModify[i], validateChoiceButton[i]].forEach(item => {
             item.addEventListener('click', e => {
@@ -135,6 +139,7 @@ if (orderArray && orderArray.length > 0) {
         })
     }
 
+    // concerne les boutons supprimer
     document.addEventListener('DOMContentLoaded', (event) => {
         let deleteButton = document.querySelectorAll('p.delete');
 
@@ -149,11 +154,7 @@ if (orderArray && orderArray.length > 0) {
         })
     })
 
-
-
-
-
-
+    // supprime une commande
     document.querySelector('.clear.baksetButton').addEventListener('click', function () {
         localStorage.removeItem('orinoco')
         document.location.reload();
@@ -161,10 +162,11 @@ if (orderArray && orderArray.length > 0) {
 
 } else {
     localStorage.removeItem('orinoco')
-    document.querySelector('#basket').innerHTML = `<h1>Votre panier est vide</h1><button><a href="/"><i class="fas fa-home"></i>Retour à l'accueil</a></button>`
+    document.querySelector('#basket').innerHTML = `<h1>Votre panier est vide</h1><button class="backHome"><a href="/"><i class="fas fa-home"></i>Retour à l'accueil</a></button>`
     document.querySelector('.basket .total').classList.remove('isFilled')
 }
 
+// fonction asynchrone envoyant la réponse au serveur en fonction de l'API d'un produit
 const orderValidate = async () => {
     var dataTeddies = {
         "contact": {
@@ -173,8 +175,7 @@ const orderValidate = async () => {
             "address": document.querySelector('input#address').value,
             "postalCode": document.querySelector('input#postalCode').value,
             "city": document.querySelector('input#city').value,
-            "email": document.querySelector('input#email').value,
-            "price": document.querySelector('.totalPrice span').textContent
+            "email": document.querySelector('input#email').value
         },
         "products": []
     }
@@ -206,6 +207,7 @@ const orderValidate = async () => {
         "products": []
     }
 
+    // affiche le template en fonction de l'API
     if (orderArray && orderArray.length > 0) {
         for (let i = 0; i < orderArray.length; i++) {
             if (orderArray[i].url.includes('teddies')) {
@@ -222,6 +224,7 @@ const orderValidate = async () => {
 
     }
 
+    // prépare la réponse serveur en fonction de l'API
     if (dataTeddies.products.length) {
         fetch('http://localhost:3000/api/teddies/order', {
                 method: 'POST',
@@ -276,11 +279,16 @@ const orderValidate = async () => {
     }
 }
 
+// déclance la fonction orderValidate de façon asynchrone
 const validate = async () => {
     await orderValidate()
 }
 
+var storeTotalPrice = {"price": document.querySelector('.totalPrice span').textContent}
+
+// soumet la réponse finale au serveur
 document.querySelector('form').addEventListener("submit", function (e) {
     e.preventDefault()
+    localStorage.setItem('storeTotalPrice', JSON.stringify(storeTotalPrice))
     validate()
 });

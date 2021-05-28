@@ -2,8 +2,6 @@ import {
     order
 } from './service.js';
 
-
-
 // URL LOCALHOST
 const urlApi = new URL(window.location.href).searchParams.get('api')
 const urlId = new URL(window.location.href).searchParams.get('id')
@@ -19,7 +17,7 @@ const fetchProduct = async () => {
     product = await fetch(productUrl).then(res => res.json());
 }
 
-
+// affiche le produit en fonction de l'API
 const showProduct = async () => {
     await fetchProduct()
 
@@ -37,10 +35,12 @@ const showProduct = async () => {
         var option = "Choisissez un vernis"
     }
 
+    // affiche les choix en fonction de l'API
     function choices(choices) {
         return choices.map(choice => `<option value="${choice}">${choice}</option>`).join("");
     }
 
+    // template du produit
     section.innerHTML = (
         `
         <div class='container'>
@@ -61,7 +61,7 @@ const showProduct = async () => {
                                 ${choice ? choices(choice):""}
                             </select>
                         </label for="amountValue">
-                        <label for="choiceValue">Quantité:
+                        <label for="amountValue">Quantité:
                             <select name="choice" id="amountValue" required>
                             <option value="" disabled selected value>Choisissez une quantité</option>
                             <option value="1">1</option>
@@ -84,6 +84,7 @@ const showProduct = async () => {
     var buttonArray = document.querySelector('button.order')
     var select = document.querySelectorAll('select');
 
+    // ajoute une commande en fonction de l'état du locaStorga (voir service.js)
     buttonArray.addEventListener('click', function () {
 
         let choiceValue = select[0].value;
@@ -114,8 +115,6 @@ const showProduct = async () => {
             }
         })
     }
-        
-
 }
 
 showProduct()

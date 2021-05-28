@@ -1,7 +1,6 @@
 main#basket {
     button {
         width: 180px;
-        margin-bottom: 50px;
         a {
             @include displayFlex(row, center, center);
             height: 100%;
@@ -9,6 +8,9 @@ main#basket {
             i {
                 margin-right: 8px;
             }
+        }
+        &.backHome {
+            margin-bottom: 50px;
         }
     }
     .basketWrapper {
