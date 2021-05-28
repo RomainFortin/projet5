@@ -79,7 +79,7 @@ main#basket {
                         width: 100%;
             
                         div.choice {
-                            @include displayFlex(row, flex-start, center);
+                            @include displayFlex(row, flex-start, flex-end);
                             flex: 1;
             
                             p {

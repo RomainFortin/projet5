@@ -61,7 +61,7 @@ const showProduct = async () => {
                                 ${choice ? choices(choice):""}
                             </select>
                         </label for="amountValue">
-                        <label>Quantité:
+                        <label for="choiceValue">Quantité:
                             <select name="choice" id="amountValue" required>
                             <option value="" disabled selected value>Choisissez une quantité</option>
                             <option value="1">1</option>

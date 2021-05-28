@@ -1,5 +1,6 @@
 .product {
     @include displayFlex(false, false, false);
+    flex-wrap: wrap;
     margin: 15px;
     flex: 1;
     background-color: #fff;
@@ -28,7 +29,21 @@
         }
         .selection{
             @include displayFlex(row, space-between, center);
+            flex-wrap: wrap;
             width: 70%;
+        }
+    }
+}
+
+@media screen and (max-width: 1753px) {
+    .product {
+        p.description{
+            margin: 20px 0;
+        }
+        .selection{
+            label {
+                margin-bottom: 20px;
+            }
         }
     }
 }
