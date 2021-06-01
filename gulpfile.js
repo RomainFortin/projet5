@@ -15,6 +15,7 @@ function style() {
 
 function watch() {
     gulp.watch('./scss/**/*.scss', style);
+    gulp.watch('./scss/**/*.scss', style);
 };
 
 exports.watch = watch;

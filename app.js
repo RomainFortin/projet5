@@ -7,7 +7,7 @@ var favicon = require('serve-favicon')
 const cameraRoutes = require('./routes/camera');
 const teddyRoutes = require('./routes/teddy');
 const furnitureRoutes = require('./routes/furniture');
-const accueil = require('./routes/routes');
+const routes = require('./routes/routes');
 
 const app = express();
 
@@ -40,6 +40,6 @@ app.use(bodyParser.json());
 app.use('/api/cameras', cameraRoutes);
 app.use('/api/teddies', teddyRoutes);
 app.use('/api/furniture', furnitureRoutes);
-app.use('/', accueil);  
+app.use('/', routes);  
 
 module.exports = app;
