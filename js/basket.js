@@ -238,7 +238,7 @@ const orderValidate = async () => {
             })
             .then(function (json) {
                 localStorage.setItem('orderTeddies', JSON.stringify(json))
-                document.location.href = "/success"
+                // document.location.href = "/success"
                 localStorage.removeItem('orinoco')
             })
 
@@ -256,7 +256,7 @@ const orderValidate = async () => {
             })
             .then(function (json) {
                 localStorage.setItem('orderCameras', JSON.stringify(json))
-                document.location.href = "/success"
+                // document.location.href = "/success"
                 localStorage.removeItem('orinoco')
             })
     }
@@ -273,7 +273,7 @@ const orderValidate = async () => {
             })
             .then(function (json) {
                 localStorage.setItem('orderFurniture', JSON.stringify(json))
-                document.location.href = "/success"
+                // document.location.href = "/success"
                 localStorage.removeItem('orinoco')
             })
     }
@@ -291,4 +291,5 @@ document.querySelector('form').addEventListener("submit", function (e) {
     e.preventDefault()
     localStorage.setItem('storeTotalPrice', JSON.stringify(storeTotalPrice))
     validate()
+    setTimeout(function(){ document.location.href = "/success"}, 200);
 });
