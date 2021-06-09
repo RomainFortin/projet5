@@ -168,42 +168,28 @@ if (orderArray && orderArray.length > 0) {
 
 // fonction asynchrone envoyant la réponse au serveur en fonction de l'API d'un produit
 const orderValidate = async () => {
+
+    var contactForm = {
+        "firstName": document.querySelector('input#firstName').value,
+        "lastName": document.querySelector('input#lastName').value,
+        "address": document.querySelector('input#address').value,
+        "postalCode": document.querySelector('input#postalCode').value,
+        "city": document.querySelector('input#city').value,
+        "email": document.querySelector('input#email').value
+    }
     var dataTeddies = {
-        "contact": {
-            "firstName": document.querySelector('input#firstName').value,
-            "lastName": document.querySelector('input#lastName').value,
-            "address": document.querySelector('input#address').value,
-            "postalCode": document.querySelector('input#postalCode').value,
-            "city": document.querySelector('input#city').value,
-            "email": document.querySelector('input#email').value
-        },
+        "contact": contactForm,
         "products": []
     }
 
 
     var dataCameras = {
-        "contact": {
-            "firstName": document.querySelector('input#firstName').value,
-            "lastName": document.querySelector('input#lastName').value,
-            "address": document.querySelector('input#address').value,
-            "postalCode": document.querySelector('input#postalCode').value,
-            "city": document.querySelector('input#city').value,
-            "email": document.querySelector('input#email').value,
-            "price": document.querySelector('.totalPrice span').textContent
-        },
+        "contact": contactForm,
         "products": []
     }
 
     var dataFurniture = {
-        "contact": {
-            "firstName": document.querySelector('input#firstName').value,
-            "lastName": document.querySelector('input#lastName').value,
-            "address": document.querySelector('input#address').value,
-            "postalCode": document.querySelector('input#postalCode').value,
-            "city": document.querySelector('input#city').value,
-            "email": document.querySelector('input#email').value,
-            "price": document.querySelector('.totalPrice span').textContent
-        },
+        "contact": contactForm,
         "products": []
     }
 
@@ -238,7 +224,6 @@ const orderValidate = async () => {
             })
             .then(function (json) {
                 localStorage.setItem('orderTeddies', JSON.stringify(json))
-                // document.location.href = "/success"
                 localStorage.removeItem('orinoco')
             })
 
@@ -256,7 +241,6 @@ const orderValidate = async () => {
             })
             .then(function (json) {
                 localStorage.setItem('orderCameras', JSON.stringify(json))
-                // document.location.href = "/success"
                 localStorage.removeItem('orinoco')
             })
     }
@@ -273,7 +257,6 @@ const orderValidate = async () => {
             })
             .then(function (json) {
                 localStorage.setItem('orderFurniture', JSON.stringify(json))
-                // document.location.href = "/success"
                 localStorage.removeItem('orinoco')
             })
     }
@@ -291,5 +274,5 @@ document.querySelector('form').addEventListener("submit", function (e) {
     e.preventDefault()
     localStorage.setItem('storeTotalPrice', JSON.stringify(storeTotalPrice))
     validate()
-    setTimeout(function(){ document.location.href = "/success"}, 200);
+    setTimeout(function(){ document.location.href = "/success" }, 100);
 });
